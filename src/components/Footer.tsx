@@ -37,16 +37,32 @@ export default function Footer() {
           paddingBottom: '4rem',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
         }}
-        className="footer-top"
+          className="footer-top"
         >
           <div>
-            <div style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '2.2rem',
-              fontWeight: 600,
-              marginBottom: '0.8rem',
-            }}>
-              Aetern<span style={{ color: 'var(--gold)' }}>um</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}>
+              <div style={{
+                background: 'white',
+                display: 'inline-block',
+                padding: '0.5rem 0.8rem',
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+              }}>
+                <img
+                  src="/v1.jpeg"
+                  alt="FACES Logo"
+                  style={{ height: '50px', width: 'auto', display: 'block' }}
+                />
+              </div>
+              <div style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '2.5rem',
+                fontWeight: 600,
+                color: 'white',
+                letterSpacing: '0.05em'
+              }}>
+                FACES
+              </div>
             </div>
             <p style={{
               color: 'rgba(255,255,255,0.5)',
@@ -54,8 +70,7 @@ export default function Footer() {
               lineHeight: 1.8,
               maxWidth: '360px',
             }}>
-              A prestigious institution dedicated to shaping leaders, building
-              legacies, and inspiring generations since 1974.
+              Bringing together all active alumni associations across Kolkata to liaison resources for the betterment of society.
             </p>
             {/* Social links */}
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
@@ -92,24 +107,34 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Accreditation badge */}
+          {/* United Alumni badge */}
           <motion.div
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ y: -5 }}
             style={{
-              background: 'rgba(201,168,76,0.1)',
-              border: '1px solid rgba(201,168,76,0.3)',
-              borderRadius: '12px',
-              padding: '1.5rem',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderTop: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: '16px',
+              padding: '2rem 1.5rem',
               textAlign: 'center',
-              minWidth: '160px',
+              minWidth: '180px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
             }}
           >
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🏅</div>
-            <div style={{ fontSize: '0.65rem', color: 'var(--gold)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
-              Accredited
+            <div style={{ marginBottom: '1.25rem', display: 'flex', justifyContent: 'center' }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                <path d="M2 12h20" />
+              </svg>
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', marginTop: '0.2rem' }}>
-              National Board of Education
+            <div style={{ fontSize: '0.65rem', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.4rem' }}>
+              United Alumni
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: 'white' }}>
+              Kolkata Network
             </div>
           </motion.div>
         </div>
@@ -172,7 +197,7 @@ export default function Footer() {
           borderTop: '1px solid rgba(255,255,255,0.06)',
         }}>
           <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)' }}>
-            © 2025 Aeternum Academy. All rights reserved.
+            © 2026 Aeternum Academy. All rights reserved.
           </p>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             {['Privacy Policy', 'Terms of Use', 'Accessibility'].map(item => (

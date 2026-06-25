@@ -29,7 +29,7 @@ export default function CTASection() {
           inset: '-10%',
           scale,
           opacity,
-          backgroundImage: 'url(/graduation_cta.png)',
+          backgroundImage: 'url(/v11.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -39,7 +39,7 @@ export default function CTASection() {
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to bottom, rgba(10,22,40,0.6) 0%, rgba(10,22,40,0.75) 50%, rgba(10,22,40,0.88) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.2) 50%, rgba(10,22,40,0.8) 100%)',
         zIndex: 1,
       }} />
 
@@ -62,18 +62,18 @@ export default function CTASection() {
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           {/* Overline */}
-          <div className="text-overline" style={{ color: 'var(--gold)', marginBottom: '1.5rem' }}>
+          <div className="text-overline" style={{ color: 'var(--gold)', marginBottom: '1.5rem', textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
             ✦ Begin Your Journey ✦
           </div>
 
           {/* Headline */}
           <h2
             className="text-display-xl"
-            style={{ color: 'white', marginBottom: '1.5rem', lineHeight: 1.05 }}
+            style={{ color: 'white', marginBottom: '1.5rem', lineHeight: 1.05, textShadow: '0 4px 20px rgba(0,0,0,0.6)' }}
           >
             Join A Legacy That
             <br />
-            <em style={{ color: 'var(--gold-light)' }}>Inspires Generations</em>
+            <em style={{ color: 'var(--gold-light)', textShadow: '0 4px 20px rgba(0,0,0,0.6)' }}>Inspires Generations</em>
           </h2>
 
           {/* Gold divider */}
@@ -86,49 +86,20 @@ export default function CTASection() {
 
           {/* Subheadline */}
           <p style={{
-            color: 'rgba(255,255,255,0.72)',
+            color: 'rgba(255,255,255,0.95)',
             fontSize: 'clamp(0.95rem, 1.8vw, 1.2rem)',
             lineHeight: 1.8,
             maxWidth: '580px',
             margin: '0 auto 2.5rem',
-            fontWeight: 300,
+            fontWeight: 400,
+            textShadow: '0 2px 10px rgba(0,0,0,0.8)'
           }}>
             Begin your journey with an institution that shapes future leaders —
             where every student is seen, challenged, and empowered to exceed
             their greatest aspirations.
           </p>
 
-          {/* CTA Buttons */}
-          <div style={{
-            display: 'flex',
-            gap: '1rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-          }}>
-            <motion.a
-              href="#"
-              id="cta-apply-now"
-              className="btn-primary"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              style={{ fontSize: '0.85rem' }}
-            >
-              Apply Now
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.a>
-            <motion.a
-              href="#alumni"
-              id="cta-connect-alumni"
-              className="btn-outline"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              style={{ fontSize: '0.85rem' }}
-            >
-              Connect With Alumni
-            </motion.a>
-          </div>
+
         </motion.div>
 
         {/* Trust Badges */}
@@ -162,15 +133,17 @@ export default function CTASection() {
                 fontSize: '1.5rem',
                 color: 'var(--gold-light)',
                 fontWeight: 500,
+                textShadow: '0 2px 10px rgba(0,0,0,0.8)'
               }}>
                 {badge.value}
               </div>
               <div style={{
                 fontSize: '0.68rem',
-                color: 'rgba(255,255,255,0.5)',
+                color: 'rgba(255,255,255,0.9)',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 marginTop: '0.2rem',
+                textShadow: '0 2px 10px rgba(0,0,0,0.8)'
               }}>
                 {badge.label}
               </div>

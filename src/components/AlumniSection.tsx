@@ -3,74 +3,41 @@ import { motion, useInView } from 'framer-motion';
 
 const alumni = [
   {
-    id: 'alumni-ceo',
-    name: 'Jonathan Harley',
-    role: 'CEO & Founder',
-    company: 'Harley Global Ventures',
-    year: "Class of '98",
-    achievement: 'Built a $2.4B enterprise spanning 40+ countries, employing 12,000 people worldwide.',
-    image: '/alumni_ceo.png',
-    tag: 'Business',
+    id: 'alumni-felix',
+    name: 'Fr. Felix Raj, SJ',
+    role: 'Vice-Chancellor',
+    company: "St. Xavier's University, Kolkata",
+    year: 'Honoured 2024',
+    achievement: 'A Jesuit educator, administrator, and visionary whose life of service has shaped thousands of students across Kolkata and beyond.',
+    image: '/v2.png',
+    tag: 'Education',
   },
   {
-    id: 'alumni-doctor',
-    name: 'Dr. Aisha Patel',
-    role: 'Chief Surgeon',
-    company: 'Johns Hopkins Medical Center',
-    year: "Class of '02",
-    achievement: 'Pioneer of minimally invasive cardiac surgery, saving 8,000+ lives with her research.',
-    image: '/alumni_doctor.png',
-    tag: 'Medicine',
+    id: 'alumni-magis',
+    name: '"Magis Mantra"',
+    role: 'Book Launch',
+    company: 'FACES Alumni Association',
+    year: 'Event 2024',
+    achievement: 'A landmark publication celebrating the philosophy of "doing more" — documenting Fr. Felix Raj\'s transformative journey and enduring legacy.',
+    image: '/v3.png',
+    tag: 'Literature',
   },
   {
-    id: 'alumni-engineer',
-    name: 'Marcus Chen',
-    role: 'Lead Aerospace Engineer',
-    company: 'Orion Space Systems',
-    year: "Class of '05",
-    achievement: 'Designed propulsion systems for 3 successful Mars missions at NASA collaboration.',
-    image: '/alumni_engineer.png',
-    tag: 'Engineering',
-  },
-  {
-    id: 'alumni-entrepreneur',
-    name: 'Sofia Ramirez',
-    role: 'Co-Founder & CEO',
-    company: 'NovaTech Solutions',
-    year: "Class of '10",
-    achievement: 'Forbes 30 Under 30. Built AI healthcare platform valued at $800M.',
-    image: '/alumni_entrepreneur.png',
-    tag: 'Entrepreneurship',
-  },
-  {
-    id: 'alumni-scientist',
-    name: 'Prof. Elena Kovacs',
-    role: 'Research Director',
-    company: 'Oxford Molecular Institute',
-    year: "Class of '95",
-    achievement: 'Published 200+ peer-reviewed papers. Nominated for Nobel Prize in Chemistry 2024.',
-    image: '/alumni_scientist.png',
-    tag: 'Science',
-  },
-  {
-    id: 'alumni-leader',
-    name: 'Robert D. Whitmore',
-    role: 'State Senator',
-    company: 'United States Congress',
-    year: "Class of '92",
-    achievement: 'Champion of education reform legislation impacting 2M+ students nationally.',
-    image: '/alumni_leader.png',
-    tag: 'Public Service',
+    id: 'alumni-faces',
+    name: 'FACES Kolkata',
+    role: 'Alumni Association',
+    company: 'Multi-disciplinary Schools & Colleges',
+    year: 'Est. 2006',
+    achievement: 'Uniting alumni across schools and colleges of Kolkata — driving 50+ social, cultural, and philanthropic activities over 20 years.',
+    image: '/v4.png',
+    tag: 'Community',
   },
 ];
 
 const tagColors: Record<string, string> = {
-  Business: '#2952a3',
-  Medicine: '#1a6b4a',
-  Engineering: '#6b3d1a',
-  Entrepreneurship: '#6b1a4a',
-  Science: '#1a4a6b',
-  'Public Service': '#4a1a6b',
+  Education: '#1a3a6b',
+  Literature: '#6b1a2a',
+  Community: '#1a5a3a',
 };
 
 export default function AlumniSection() {
@@ -78,7 +45,7 @@ export default function AlumniSection() {
   const inView = useInView(ref, { once: true, margin: '-10%' });
 
   return (
-    <section id="alumni" style={{ background: 'var(--off-white)', padding: '8rem 0', overflow: 'hidden' }}>
+    <section id="alumni" style={{ background: 'var(--off-white)', padding: '4rem 0', overflow: 'hidden' }}>
       <div className="container-xl">
         {/* Header */}
         <motion.div
@@ -89,23 +56,23 @@ export default function AlumniSection() {
           style={{ marginBottom: '4rem' }}
         >
           <div className="text-overline" style={{ color: 'var(--gold)' }}>
-            ✦ Success Beyond Graduation
+            ✦ A Landmark FACES Event
           </div>
           <div className="gold-divider" />
-          <h2 className="text-display-lg" style={{ color: 'var(--navy)', maxWidth: '600px', marginTop: '0.5rem' }}>
-            Where Our Alumni
+          <h2 className="text-display-lg" style={{ color: 'var(--navy)', maxWidth: '700px', marginTop: '0.5rem' }}>
+            Book Launch of
             <br />
-            <em>Change The World</em>
+            <em>"Magis Mantra"</em>
           </h2>
           <p style={{
             color: 'var(--gray-mid)',
-            maxWidth: '480px',
+            maxWidth: '540px',
             lineHeight: 1.8,
             marginTop: '1rem',
             fontSize: '0.95rem',
           }}>
-            From boardrooms to operating theaters, from space missions to Capitol Hill —
-            Aeternum graduates lead at the highest levels globally.
+            Celebrating the extraordinary journey of <strong style={{ color: 'var(--navy)' }}>Fr. Felix Raj, SJ</strong> —
+            Vice-Chancellor, St. Xavier's University, Kolkata. A tribute to vision, faith, and transformative leadership.
           </p>
         </motion.div>
 
@@ -226,37 +193,6 @@ export default function AlumniSection() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          style={{ textAlign: 'center', marginTop: '4rem' }}
-        >
-          <a
-            href="#"
-            id="view-all-alumni"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'var(--royal-light)',
-              borderBottom: '1px solid var(--royal-light)',
-              paddingBottom: '2px',
-              transition: 'all 0.3s ease',
-            }}
-          >
-            View Full Alumni Network
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </motion.div>
       </div>
     </section>
   );

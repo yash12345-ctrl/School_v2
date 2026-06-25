@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AlumniSection from './components/AlumniSection';
+import PresidentSection from './components/PresidentSection';
 import LegacyNumbers from './components/LegacyNumbers';
 import ExperienceSection from './components/ExperienceSection';
 import FutureReadySection from './components/FutureReadySection';
@@ -62,6 +63,7 @@ export default function App() {
         <HeroSection />
         <AlumniSection />
         <LegacyNumbers />
+        <PresidentSection />
         <ExperienceSection />
         <FutureReadySection />
         <TestimonialsSection />

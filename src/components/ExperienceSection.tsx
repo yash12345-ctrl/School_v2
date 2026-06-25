@@ -3,21 +3,21 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 const experiences = [
   {
-    id: 'experience-classroom',
-    title: 'Smart Classrooms',
-    subtitle: 'Where Technology Meets Pedagogy',
+    id: 'experience-walk',
+    title: 'End Female Foeticide',
+    subtitle: 'Walk Against the Killing of Girl Child',
     description:
-      'Cutting-edge interactive learning environments powered by AI-driven tools, dual 4K displays, and immersive collaboration systems that transform every lesson into an experience.',
-    image: '/smart_classroom.png',
+      'Supported by FACES — a powerful march uniting alumni, students, and citizens of Kolkata to stand against female foeticide. Every step a statement. Every voice a movement.',
+    image: '/v6.png',
     accent: 'var(--royal-light)',
   },
   {
-    id: 'experience-innovation',
-    title: 'Innovation Labs',
-    subtitle: 'Building Tomorrow, Today',
+    id: 'experience-education-summit',
+    title: 'Education Summit',
+    subtitle: 'Supported by FACES',
     description:
-      'State-of-the-art fabrication zones with robotics, 3D printing, laser cutting, and a dedicated maker space where students prototype real-world solutions to global challenges.',
-    image: '/innovation_lab.png',
+      'A landmark gathering of educators, alumni, and change-makers — brought together by FACES to reimagine the future of education in Kolkata and beyond.',
+    image: '/v7.png',
     accent: 'var(--gold)',
   },
 ];
@@ -59,14 +59,38 @@ function ExperiencePanel({
         <motion.div
           style={{
             position: 'absolute',
-            inset: '-5%',
+            inset: 0,
             scale: imgScale,
+            overflow: 'hidden',
           }}
         >
+          {/* Blurred background fill — eliminates letterbox bars */}
+          <img
+            src={exp.image}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              inset: '-10%',
+              width: '120%',
+              height: '120%',
+              objectFit: 'cover',
+              filter: 'blur(18px) brightness(0.6) saturate(0.8)',
+              transform: 'scale(1.1)',
+              pointerEvents: 'none',
+            }}
+          />
+          {/* Main image — full visible */}
           <img
             src={exp.image}
             alt={exp.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              zIndex: 1,
+            }}
           />
         </motion.div>
         {/* Overlay gradient */}
@@ -102,7 +126,7 @@ function ExperiencePanel({
               className="text-overline"
               style={{ color: exp.accent, marginBottom: '1.2rem' }}
             >
-              ✦ Student Experience
+              ✦ FACES Initiative
             </div>
             <h2
               className="text-display-md"
@@ -160,7 +184,7 @@ function ExperiencePanel({
             >
               Discover More
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
           </motion.div>
@@ -187,12 +211,12 @@ export default function ExperienceSection() {
           transition={{ duration: 0.7 }}
         >
           <div className="text-overline" style={{ marginBottom: '1rem' }}>
-            ✦ The Aeternum Experience
+            ✦ The FACES Impact
           </div>
           <h2 className="text-display-lg" style={{ color: 'var(--navy)' }}>
-            A Campus That
+            Initiatives That
             <br />
-            <em>Inspires Brilliance</em>
+            <em>Inspire Change</em>
           </h2>
           <p
             style={{
@@ -204,8 +228,7 @@ export default function ExperienceSection() {
               marginInline: 'auto',
             }}
           >
-            Every space is designed to awaken curiosity, ignite creativity, and
-            forge the leaders of tomorrow.
+            Every initiative is designed to empower communities, foster leadership, and build a lasting legacy of service and excellence.
           </p>
         </motion.div>
       </div>
@@ -221,15 +244,47 @@ export default function ExperienceSection() {
           className="container-xl"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '1.5rem',
           }}
         >
           {[
-            { icon: '⚽', title: 'Sports Excellence', desc: 'Olympic-standard facilities' },
-            { icon: '🎭', title: 'Arts & Culture', desc: 'Theatre, music, visual arts' },
-            { icon: '🌐', title: 'Global Exchange', desc: 'Partnerships in 30+ nations' },
-            { icon: '🎤', title: 'Leadership Programs', desc: 'MUN, Debates & Summits' },
+            {
+              icon: (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              ),
+              title: 'Health Initiatives',
+              desc: 'Blood donation & medical camps driving critical community care.',
+            },
+            {
+              icon: (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+              ),
+              title: 'Environmental Action',
+              desc: 'Tree plantation drives & clean-ups for a sustainable tomorrow.',
+            },
+            {
+              icon: (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              ),
+              title: 'Education Support',
+              desc: 'Scholarships & mentoring programs to empower future leaders.',
+            },
+            {
+              icon: (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              ),
+              title: 'Community Relief',
+              desc: 'Disaster response & proactive aid during times of crisis.',
+            },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -237,28 +292,65 @@ export default function ExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              whileHover={{ 
+                y: -8, 
+                boxShadow: '0 12px 40px rgba(0,0,0,0.08)',
+                transition: { duration: 0.3, ease: 'easeOut' } 
+              }}
               style={{
+                position: 'relative',
                 background: 'white',
                 borderRadius: '16px',
-                padding: '2rem',
-                boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
+                padding: '2.5rem 2rem',
+                boxShadow: '0 4px 30px rgba(0,0,0,0.03)',
                 cursor: 'pointer',
-                transition: 'box-shadow 0.3s ease',
+                border: '1px solid rgba(0,0,0,0.04)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{item.icon}</div>
+              {/* Premium Top Gradient Accent */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '4px',
+                  background: 'linear-gradient(90deg, var(--gold), var(--royal-light))',
+                  opacity: 0.9,
+                }}
+              />
+              
+              <div 
+                style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '50%',
+                  background: 'rgba(212, 175, 55, 0.08)',
+                  color: 'var(--gold)',
+                  marginBottom: '1.5rem',
+                }}
+              >
+                {item.icon}
+              </div>
               <h4
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.2rem',
+                  fontSize: '1.25rem',
                   color: 'var(--navy)',
-                  marginBottom: '0.3rem',
+                  marginBottom: '0.6rem',
+                  fontWeight: 500,
                 }}
               >
                 {item.title}
               </h4>
-              <p style={{ fontSize: '0.82rem', color: 'var(--gray-mid)' }}>
+              <p style={{ fontSize: '0.9rem', color: '#666', lineHeight: 1.6 }}>
                 {item.desc}
               </p>
             </motion.div>

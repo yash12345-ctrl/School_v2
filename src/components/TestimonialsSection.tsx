@@ -1,301 +1,179 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-
-const testimonials = [
-  {
-    id: 'testimonial-1',
-    quote:
-      'Aeternum didn\'t just give me an education — it gave me a worldview. The values of rigor, compassion, and relentless curiosity I developed here became the bedrock of everything I have built.',
-    author: 'Jonathan Harley',
-    role: 'CEO, Harley Global Ventures',
-    year: "Class of '98",
-    image: '/alumni_ceo.png',
-  },
-  {
-    id: 'testimonial-2',
-    quote:
-      'On the days I\'m in the operating theater making split-second decisions, I think back to the discipline and critical thinking honed at Aeternum. This institution shaped not just my career, but my character.',
-    author: 'Dr. Aisha Patel',
-    role: 'Chief Surgeon, Johns Hopkins',
-    year: "Class of '02",
-    image: '/alumni_doctor.png',
-  },
-  {
-    id: 'testimonial-3',
-    quote:
-      'From our innovation lab to the NASA collaboration, every audacious dream was encouraged. Aeternum taught me that the boundary of the possible is just a starting point, not a limit.',
-    author: 'Marcus Chen',
-    role: 'Lead Aerospace Engineer, Orion Space Systems',
-    year: "Class of '05",
-    image: '/alumni_engineer.png',
-  },
-  {
-    id: 'testimonial-4',
-    quote:
-      'The entrepreneurship program here was a revelation. At 16, I was pitching business ideas to real investors. That fearlessness — that belief in my own potential — was Aeternum\'s greatest gift to me.',
-    author: 'Sofia Ramirez',
-    role: 'Co-Founder, NovaTech Solutions',
-    year: "Class of '10",
-    image: '/alumni_entrepreneur.png',
-  },
-];
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 export default function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(1);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-10%' });
 
-  const navigate = (newIndex: number) => {
-    setDirection(newIndex > active ? 1 : -1);
-    setActive(newIndex);
-  };
-
-  // Auto-scroll
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection(1);
-      setActive(prev => (prev + 1) % testimonials.length);
-    }, 5500);
-    return () => clearInterval(timer);
-  }, []);
-
-  const current = testimonials[active];
-
-  const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
-  };
-
   return (
     <section
-      id="testimonials"
+      id="mission-aim"
       ref={ref}
       style={{
-        padding: '8rem 2rem',
+        padding: '10rem 2rem',
         background: 'white',
+        position: 'relative',
         overflow: 'hidden',
       }}
     >
-      <div className="container-lg">
+      <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          style={{ textAlign: 'center', marginBottom: '5rem' }}
+          style={{ marginBottom: '8rem' }}
         >
-          <div className="text-overline" style={{ marginBottom: '1rem' }}>
-            ✦ In Their Own Words
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
+            <div style={{ width: '60px', height: '1px', background: 'var(--gold)' }} />
+            <div className="text-overline" style={{ color: 'var(--gold)', letterSpacing: '0.2em' }}>
+              Core Purpose
+            </div>
           </div>
-          <h2 className="text-display-lg" style={{ color: 'var(--navy)' }}>
-            Alumni <em>Testimonials</em>
+          <h2 className="text-display-lg" style={{ color: 'var(--navy)', fontSize: 'clamp(3rem, 6vw, 5.5rem)', maxWidth: '900px', lineHeight: 1.1 }}>
+            Driving change through <em>collaboration & action.</em>
           </h2>
         </motion.div>
 
-        {/* Testimonial Stage */}
+        {/* Mission */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
+          style={{
+            display: 'grid',
+            gap: '3rem',
+            borderTop: '1px solid rgba(0,0,0,0.1)',
+            paddingTop: '4rem',
+            marginBottom: '4rem'
+          }}
+          className="editorial-grid"
         >
-          <div style={{
-            position: 'relative',
-            background: 'var(--off-white)',
-            borderRadius: '24px',
-            padding: 'clamp(2.5rem, 5vw, 4rem)',
-            boxShadow: '0 4px 40px rgba(0,0,0,0.06)',
-            minHeight: '320px',
-            overflow: 'hidden',
-          }}>
-            {/* Quote mark decoration */}
-            <div style={{
-              position: 'absolute',
-              top: '1.5rem',
-              left: '2.5rem',
+          <div>
+            <h3 style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '8rem',
-              lineHeight: 1,
-              color: 'var(--gold)',
-              opacity: 0.15,
-              userSelect: 'none',
-              pointerEvents: 'none',
+              fontSize: '2rem',
+              color: 'var(--navy)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
             }}>
-              "
-            </div>
-
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={current.id}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr auto',
-                  gap: '3rem',
-                  alignItems: 'center',
-                }}
-                className="testimonial-inner"
-              >
-                {/* Quote Content */}
-                <div>
-                  <blockquote
-                    className="testimonial-quote"
-                    style={{ marginBottom: '2rem', position: 'relative', zIndex: 1 }}
-                  >
-                    "{current.quote}"
-                  </blockquote>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{
-                      width: '40px',
-                      height: '2px',
-                      background: 'var(--gold)',
-                      flexShrink: 0,
-                    }} />
-                    <div>
-                      <div style={{
-                        fontWeight: 700,
-                        color: 'var(--navy)',
-                        fontSize: '0.95rem',
-                      }}>
-                        {current.author}
-                      </div>
-                      <div style={{
-                        fontSize: '0.78rem',
-                        color: 'var(--gray-mid)',
-                        marginTop: '0.1rem',
-                      }}>
-                        {current.role} · {current.year}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Portrait */}
-                <div style={{
-                  width: '120px',
-                  height: '120px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  flexShrink: 0,
-                  border: '3px solid white',
-                  boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                }}>
-                  <img
-                    src={current.image}
-                    alt={current.author}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
-                  />
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              <span style={{ fontSize: '0.8rem', color: 'var(--gray-mid)', fontFamily: 'var(--font-sans)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>01.</span>
+              The Mission
+            </h3>
           </div>
-
-          {/* Controls */}
+          
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '1rem',
-            marginTop: '2.5rem',
+            fontSize: '1.35rem',
+            lineHeight: 1.8,
+            color: 'var(--navy)',
+            fontWeight: 300,
+            maxWidth: '800px'
           }}>
-            {/* Prev */}
-            <button
-              id="testimonial-prev"
-              onClick={() => navigate((active - 1 + testimonials.length) % testimonials.length)}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '50%',
-                border: '1px solid var(--gray-light)',
-                background: 'white',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease',
-                color: 'var(--navy)',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--gold)';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--gray-light)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--navy)';
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+            <p style={{ marginBottom: '2rem' }}>
+              <strong style={{ fontWeight: 500 }}>FACES</strong> has taken up the task of bringing together all the active alumni associations of Schools, Colleges and Educational institutes in Kolkata to liaison resources for the betterment of society.
+            </p>
+            <p>
+              Our mission is to bring together all the active Alumni/ae associations of educational institutes in Kolkata and aid in their plethora of activities.
+            </p>
+          </div>
+        </motion.div>
 
-            {/* Dots */}
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                id={`testimonial-dot-${i}`}
-                onClick={() => navigate(i)}
-                style={{
-                  width: i === active ? '28px' : '8px',
-                  height: '8px',
-                  borderRadius: '4px',
-                  background: i === active ? 'var(--gold)' : 'var(--gray-light)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.4s ease',
-                  padding: 0,
-                }}
-              />
-            ))}
+        {/* Aim */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          style={{
+            display: 'grid',
+            gap: '3rem',
+            borderTop: '1px solid rgba(0,0,0,0.1)',
+            paddingTop: '4rem',
+          }}
+          className="editorial-grid"
+        >
+          <div>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '2rem',
+              color: 'var(--navy)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+            }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--gray-mid)', fontFamily: 'var(--font-sans)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>02.</span>
+              Our Aim
+            </h3>
+          </div>
+          
+          <div>
+            <p style={{
+              fontSize: '1.35rem',
+              lineHeight: 1.8,
+              color: 'var(--navy)',
+              fontWeight: 300,
+              maxWidth: '800px',
+              marginBottom: '4rem'
+            }}>
+              Our aim is to facilitate knowledge transfer between its members by means of interchange so that they can benefit from the added value identities of individuals, schools and their individual freedom in learning and research.
+            </p>
 
-            {/* Next */}
-            <button
-              id="testimonial-next"
-              onClick={() => navigate((active + 1) % testimonials.length)}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '50%',
-                border: '1px solid var(--gray-light)',
-                background: 'white',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease',
-                color: 'var(--navy)',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--gold)';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--gray-light)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--navy)';
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '2rem',
+            }}>
+              <div style={{
+                background: 'var(--off-white)',
+                padding: '2.5rem',
+                borderRadius: '16px',
+                borderLeft: '2px solid var(--gold)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }} className="aim-card">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{ marginBottom: '1.5rem', color: 'var(--gold)' }}>
+                  <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2 12h20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--navy)', marginBottom: '1rem' }}>Cultural Cooperation</h4>
+                <p style={{ color: 'var(--gray-dark)', lineHeight: 1.7, fontSize: '1rem' }}>
+                  We encourage cooperation in cultural, social and sporting activities between all our esteemed members.
+                </p>
+              </div>
+
+              <div style={{
+                background: 'var(--off-white)',
+                padding: '2.5rem',
+                borderRadius: '16px',
+                borderLeft: '2px solid var(--navy)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }} className="aim-card">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{ marginBottom: '1.5rem', color: 'var(--navy)' }}>
+                  <path d="M23 6l-9.5 9.5-5-5L1 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M17 6h6v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--navy)', marginBottom: '1rem' }}>Driving Force</h4>
+                <p style={{ color: 'var(--gray-dark)', lineHeight: 1.7, fontSize: '1rem' }}>
+                  Aiming to become a driving force in the creation and further development in the field of Higher Education, upliftment of the downtrodden and enhancing the avenues of service for mankind.
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .testimonial-inner {
-            grid-template-columns: 1fr !important;
+        .editorial-grid {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 992px) {
+          .editorial-grid {
+            grid-template-columns: 280px 1fr;
           }
-          .testimonial-inner > div:last-child {
-            display: none;
-          }
+        }
+        .aim-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
       `}</style>
     </section>
