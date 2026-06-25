@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Alumni', href: '#alumni' },
-  { label: 'Academics', href: '#academics' },
-  { label: 'Campus', href: '#experience' },
-  { label: 'News', href: '#news' },
+  { label: 'Home', href: '#home' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Member', href: '#member' },
+  { label: 'Events', href: '#events' },
+  { label: 'Media', href: '#media' },
+  { label: 'Donate', href: '#donate' },
 ];
 
 export default function Navbar() {
