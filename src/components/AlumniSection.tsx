@@ -9,7 +9,7 @@ const alumni = [
     company: 'Father Felix Raj, SJ',
     year: 'Honoured 2024',
     achievement: "A landmark event celebrating the inspiring journey of the Vice-Chancellor, St. Xavier's University.",
-    image: '/v2.png',
+    image: '/v2.webp',
     tag: 'Education',
   },
   {
@@ -19,7 +19,7 @@ const alumni = [
     company: 'FACES Alumni Association',
     year: 'Winter 2024',
     achievement: 'A collaborative initiative by FACES, in partnership with the Abdus Shokur Foundation and the Anti-Hunger Squad Foundation.',
-    image: '/e2.png',
+    image: '/e2.webp',
     tag: 'Community',
   },
   {
@@ -29,7 +29,7 @@ const alumni = [
     company: 'By Zara Bhardwaj',
     year: 'Project 2024',
     achievement: 'A powerful documentary film exploring communal harmony, proudly supported by FACES.',
-    image: '/e7.png',
+    image: '/e7.webp',
     tag: 'Film',
   },
 ];

@@ -8,12 +8,12 @@ import './media.css';
 const MEDIA_CATEGORIES = ['All', 'Press', 'Videos', 'Galleries'];
 
 const MEDIA_ITEMS = [
-  { id: 1, type: 'Video', title: 'Aeternum Academy: A Legacy of Excellence', date: 'October 2023', category: 'Videos', image: '/v11.png', duration: '4:30' },
-  { id: 2, type: 'Article', title: 'The Future of Education: Leadership Summit Highlights', date: 'August 2023', category: 'Press', image: '/v7.png', readTime: '5 min read' },
-  { id: 3, type: 'Gallery', title: 'Annual Cultural Festival 2023', date: 'June 2023', category: 'Galleries', image: '/v8.png', count: '45 Photos' },
-  { id: 4, type: 'Article', title: 'Alumni Association Announces New Scholarship Program', date: 'May 2023', category: 'Press', image: '/v9.png', readTime: '3 min read' },
-  { id: 5, type: 'Video', title: 'Campus Tour: The New Science Wing', date: 'April 2023', category: 'Videos', image: '/v10.png', duration: '2:15' },
-  { id: 6, type: 'Gallery', title: 'Sports Meet & Marathon', date: 'March 2023', category: 'Galleries', image: '/v6.png', count: '82 Photos' },
+  { id: 1, type: 'Video', title: 'Aeternum Academy: A Legacy of Excellence', date: 'October 2023', category: 'Videos', image: '/v11.webp', duration: '4:30' },
+  { id: 2, type: 'Article', title: 'The Future of Education: Leadership Summit Highlights', date: 'August 2023', category: 'Press', image: '/v7.webp', readTime: '5 min read' },
+  { id: 3, type: 'Gallery', title: 'Annual Cultural Festival 2023', date: 'June 2023', category: 'Galleries', image: '/v8.webp', count: '45 Photos' },
+  { id: 4, type: 'Article', title: 'Alumni Association Announces New Scholarship Program', date: 'May 2023', category: 'Press', image: '/v9.webp', readTime: '3 min read' },
+  { id: 5, type: 'Video', title: 'Campus Tour: The New Science Wing', date: 'April 2023', category: 'Videos', image: '/v10.webp', duration: '2:15' },
+  { id: 6, type: 'Gallery', title: 'Sports Meet & Marathon', date: 'March 2023', category: 'Galleries', image: '/v6.webp', count: '82 Photos' },
 ];
 
 const getIconForType = (type: string) => {
@@ -48,7 +48,7 @@ export default function MediaPage() {
         {/* ── Cinematic Hero Section ── */}
         <section className="media-hero" ref={heroRef}>
           <motion.div className="media-hero-bg-wrapper" style={{ scale: heroScale, opacity: heroOpacity }}>
-            <img src="/n1.png" alt="Media Background" className="media-hero-bg-img" />
+            <img src="/n1.webp" alt="Media Background" className="media-hero-bg-img" />
             <div className="media-hero-overlay"></div>
             <div className="media-hero-gradient"></div>
           </motion.div>

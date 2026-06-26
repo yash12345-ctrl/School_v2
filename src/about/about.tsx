@@ -87,7 +87,7 @@ export default function About() {
             className="about-block-media"
           >
             <div className="about-image-wrapper">
-              <img src="/A1.png" alt="FACES Community" />
+              <img src="/A1.webp" alt="FACES Community" />
             </div>
             <div className="about-image-decorator" />
           </motion.div>
@@ -119,7 +119,7 @@ export default function About() {
             className="about-block-media"
           >
             <div className="about-image-wrapper" style={{ borderColor: 'rgba(255, 255, 255, 0.15)' }}>
-              <img src="/A2.png" alt="FACES Mission" />
+              <img src="/A2.webp" alt="FACES Mission" />
             </div>
             <div className="about-image-decorator" style={{ borderColor: 'var(--gold)' }} />
           </motion.div>
@@ -177,7 +177,7 @@ export default function About() {
             className="about-block-media"
           >
             <div className="about-image-wrapper">
-              <img src="/A3.png" alt="FACES Aim" />
+              <img src="/A3.webp" alt="FACES Aim" />
             </div>
             <div className="about-image-decorator" />
           </motion.div>
@@ -194,7 +194,7 @@ export default function About() {
             className="about-block-media"
           >
             <div className="about-image-wrapper" style={{ borderColor: 'rgba(255, 255, 255, 0.15)' }}>
-              <img src="/A4.png" alt="FACES Activities" />
+              <img src="/A4.webp" alt="FACES Activities" />
             </div>
             <div className="about-image-decorator" style={{ borderColor: 'var(--gold)' }} />
           </motion.div>
@@ -250,7 +250,7 @@ export default function About() {
             </p>
 
             <div className="media-grid">
-              {['/A8 (1).png', '/A8 (2).png', '/A8 (3).png', '/A8 (4).png'].map((src, index) => {
+              {['/A8 (1).webp', '/A8 (2).webp', '/A8 (3).webp', '/A8 (4).webp'].map((src, index) => {
                 const rotate = [-6, 4, -3, 5][index % 4];
                 return (
                   <motion.div
