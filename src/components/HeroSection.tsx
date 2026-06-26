@@ -4,10 +4,18 @@ import { gsap } from 'gsap';
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(e => console.log('Autoplay prevented', e));
+    }
+  }, []);
 
   const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
@@ -81,7 +89,9 @@ export default function HeroSection() {
         />
         {/* Video Overlay */}
         <video
+          ref={videoRef}
           autoPlay muted loop playsInline
+          preload="auto"
           src="/also_remove_the_balls.mp4"
           style={{
             position: 'absolute', inset: 0,
