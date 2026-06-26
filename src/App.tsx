@@ -4,14 +4,14 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AlumniSection from './components/AlumniSection';
 import PresidentSection from './components/PresidentSection';
-import LegacyNumbers from './components/LegacyNumbers';
-import ExperienceSection from './components/ExperienceSection';
-import FutureReadySection from './components/FutureReadySection';
-import TestimonialsSection from './components/TestimonialsSection';
+import ProgramsSection from './components/ProgramsSection';
+
+
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import EventPage from './event/event';
 import About from './about/about';
+import MediaPage from './media/media';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -35,6 +35,10 @@ export default function App() {
         <Footer />
       </>
     );
+  }
+
+  if (currentPath === '/media') {
+    return <MediaPage />;
   }
 
   // Lenis smooth scrolling
@@ -85,12 +89,14 @@ export default function App() {
       <main>
         <HeroSection />
         <AlumniSection />
-        <LegacyNumbers />
+
         <PresidentSection />
-        <ExperienceSection />
-        <FutureReadySection />
-        <TestimonialsSection />
+        <ProgramsSection />
+
+
+
         <CTASection />
+
       </main>
       <Footer />
     </>

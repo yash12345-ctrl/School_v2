@@ -219,10 +219,6 @@ function LegacyStatsSection() {
   return (
     <section className="legacy-stats-section">
       <div className="container-xl">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="legacy-stats-header">
-          <div className="legacy-eyebrow">✦ A LEGACY IN NUMBERS</div>
-          <h2 className="legacy-title">Decades of <span className="italic">Measured</span> Excellence</h2>
-        </motion.div>
 
         <div className="legacy-stats-grid">
           {stats.map((s, i) => (
