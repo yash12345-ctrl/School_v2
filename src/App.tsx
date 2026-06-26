@@ -10,9 +10,32 @@ import FutureReadySection from './components/FutureReadySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import EventPage from './event/event';
+import About from './about/about';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const onLocationChange = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', onLocationChange);
+    return () => window.removeEventListener('popstate', onLocationChange);
+  }, []);
+
+  if (currentPath === '/event') {
+    return <EventPage />;
+  }
+
+  if (currentPath === '/about') {
+    return (
+      <>
+        <Navbar />
+        <About />
+        <Footer />
+      </>
+    );
+  }
 
   // Lenis smooth scrolling
   useEffect(() => {

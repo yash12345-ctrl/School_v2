@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Member', href: '#member' },
-  { label: 'Events', href: '#events' },
-  { label: 'Media', href: '#media' },
-  { label: 'Donate', href: '#donate' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Member', href: '/#member' },
+  { label: 'Events', href: '/event' },
+  { label: 'Media', href: '/#media' },
+  { label: 'Donate', href: '/#donate' },
 ];
 
 export default function Navbar() {
@@ -35,7 +35,7 @@ export default function Navbar() {
       >
         {/* ── Premium Logo ── */}
         <a
-          href="#"
+          href="/"
           className="nav-logo"
           id="nav-logo"
           style={{ display: 'flex', alignItems: 'center', gap: '0', textDecoration: 'none' }}
