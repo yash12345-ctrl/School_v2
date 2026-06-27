@@ -29,7 +29,7 @@ export default function CTASection() {
           inset: '-10%',
           scale,
           opacity,
-          backgroundImage: 'url(/v11.png)',
+          backgroundImage: 'url(/v11.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

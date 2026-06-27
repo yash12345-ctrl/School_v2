@@ -6,7 +6,7 @@ const navItems = [
   { label: 'About Us', href: '/about' },
   { label: 'Member', href: '/member' },
   { label: 'Events', href: '/event' },
-  { label: 'Media', href: '/#media' },
+  { label: 'Media', href: '/media' },
   { label: 'Donate', href: '/#donate' },
 ];
 
@@ -103,7 +103,7 @@ export default function Navbar() {
                 zIndex: 2,
               }}>
                 <img
-                  src="/v1.jpeg"
+                  src="/v1.webp"
                   alt="FACES"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />

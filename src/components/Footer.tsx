@@ -49,7 +49,7 @@ export default function Footer() {
                 boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
               }}>
                 <img
-                  src="/v1.jpeg"
+                  src="/v1.webp"
                   alt="FACES Logo"
                   style={{ height: '50px', width: 'auto', display: 'block' }}
                 />

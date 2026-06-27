@@ -80,65 +80,138 @@
   flex-direction: column;
   align-items: center;
   gap: 4rem;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .team-row {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 3.5rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .team-member-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  width: 260px;
+  background: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.05);
+  transition: all 0.5s var(--transition-apple);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.team-member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10, 22, 40, 0.12);
+  border-color: transparent;
+}
+
+.team-member-card:hover::after {
+  opacity: 1;
 }
 
 .team-member-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 16px;
+  width: 220px;
+  height: 135px;
+  border-radius: 12px;
   background: var(--navy);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(201, 168, 76, 0.5);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  transition: all 0.4s var(--transition-apple);
 }
 
-.team-member-photo:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--gold);
+.team-member-card:hover .team-member-photo {
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(201, 168, 76, 0.25);
 }
 
 .team-member-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s var(--transition-apple);
+}
+
+.team-member-card:hover .team-member-photo img {
+  transform: scale(1.05);
 }
 
 .team-member-info {
   text-align: center;
+  margin-top: 0.75rem;
 }
 
 .team-member-name {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.team-member-card:hover .team-member-name {
+  color: var(--gold);
 }
 
 .team-member-role {
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.85rem;
+  color: var(--gray-mid);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* President Card Specifics */
+.team-member-card.president-card {
+  width: 320px;
+  padding: 1.5rem;
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 15px 45px rgba(10, 22, 40, 0.08);
+}
+
+.team-member-card.president-card::after {
+  border-width: 3px;
+}
+
+.team-member-card.president-card .team-member-photo {
+  width: 270px;
+  height: 370px; /* High quality portrait for a10.png */
+}
+
+.team-member-card.president-card .team-member-name {
+  font-size: 1.6rem;
+}
+
+.team-member-card.president-card .team-member-role {
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
 }
 
 /* ─── Eminent Personalities Section ────────────────────── */

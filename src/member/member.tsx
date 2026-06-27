@@ -52,7 +52,7 @@ export default function MemberPage() {
           {/* Top Row: President */}
           <div className="team-row">
             <motion.div 
-              className="team-member-card"
+              className="team-member-card president-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -78,7 +78,7 @@ export default function MemberPage() {
               transition={{ delay: 0.2 }}
             >
               <div className="team-member-photo">
-                <img src="/v2.png" alt="Vice President" />
+                <img src="/v2.webp" alt="Vice President" />
               </div>
               <div className="team-member-info">
                 <h3 className="team-member-name">VP Name</h3>
@@ -94,7 +94,7 @@ export default function MemberPage() {
               transition={{ delay: 0.3 }}
             >
               <div className="team-member-photo">
-                <img src="/v3.png" alt="Secretary" />
+                <img src="/v3.webp" alt="Secretary" />
               </div>
               <div className="team-member-info">
                 <h3 className="team-member-name">Sec. Name</h3>
@@ -110,7 +110,7 @@ export default function MemberPage() {
               transition={{ delay: 0.4 }}
             >
               <div className="team-member-photo">
-                <img src="/v4.png" alt="Treasurer" />
+                <img src="/v4.webp" alt="Treasurer" />
               </div>
               <div className="team-member-info">
                 <h3 className="team-member-name">Treas. Name</h3>
@@ -148,7 +148,7 @@ export default function MemberPage() {
               transition={{ delay: index * 0.15 }}
             >
               <div className="eminent-photo">
-                <img src={`/A${index + 5}.png`} alt={`Eminent Member ${item}`} />
+                <img src={`/A${index + 5}.webp`} alt={`Eminent Member ${item}`} />
               </div>
               <div className="eminent-details">
                 <h3 className="eminent-name">(Name)</h3>

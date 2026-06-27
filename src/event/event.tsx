@@ -21,19 +21,19 @@ const Particles = () => (
 
 /* ─────────────────── Data ─────────────────── */
 const EVENTS = [
-  { id: 1, title: "Book Launch of “Magis Mantra”", date: "", location: "St. Xavier's University", category: "Cultural", year: 2023, description: "Celebrating the journey of Father Felix Raj, SJ, Vice-Chancellor St Xavier’s University.", images: ["/v2.png", "/v3.png", "/v4.png", "/e1.png"] },
-  { id: 2, title: "Blanket Distribution", date: "", location: "Kolkata", category: "Awareness", year: 2023, description: "An initiative by FACES with Abdus Shokur Foundation and Anti-Hunger Squad Foundation.", images: ["/v9.png", "/v10.png", "/e2.png", "/e3.png"] },
-  { id: 3, title: "Christmas Cake Mixing Ritual", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "NIPS, in association with FACES, celebrated the joyous festival of Christmas with the cake mixing ritual.", images: ["/e4.png", "/e5.png", "/e6.png",] },
-  { id: 4, title: "Documentary by Zara Bhardwaj on Communal Harmony", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e7.png", "/v11.png", "/e9.png", "/e10.png", "/e8.png"] },
-  { id: 5, title: "Book Launch of 'Comarades and Comebacks' by Saira Shah Halim", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e11.png", "/e12.png", "/e13.png", "/e14.png"] },
-  { id: 6, title: "Education Summit", date: "", location: "Kolkata", category: "Summit", year: 2023, description: "Supported by FACES.", images: ["/v7.png", "/e15.png", "/e16.png", "/e17.png"] },
-  { id: 7, title: "Book Launch of 'The Far Side'", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e18.png", "/e19.png", "/e20.png", "/e21.png"] },
-  { id: 8, title: "Gurukul Awards", date: "", location: "Kolkata", category: "Gala", year: 2023, description: "Supported by FACES.", images: ["/e22.png", "/e23.png", "/e24.png", "/e25.png"] },
-  { id: 9, title: "Amity Half Marathon", date: "", location: "Kolkata", category: "Sports", year: 2022, description: "Supported by FACES.", images: ["/e26.png", "/e27.png", "/e28.png", "/e29.png"] },
-  { id: 10, title: "The Creative Arts", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/v8.png", "/e30.png", "/e31.png", "/e32.png"] },
-  { id: 11, title: "World Suicide Prevention Day Celebration", date: "", location: "Kolkata", category: "Awareness", year: 2022, description: "Supported by FACES.", images: ["/e33.png", "/e34.png", "/e35.png", "/e36.png"] },
-  { id: 12, title: "Zard Sitara", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/e40.png", "/e41.png", "/e42.png", "/e43.png"] },
-  { id: 13, title: "Walk Against the Killing of Girl Child", date: "", location: "Kolkata", category: "Awareness", year: 2022, description: "Supported by FACES.", images: ["/v6.png", "/e37.png", "/e38.png", "/e39.png"] },
+  { id: 1, title: "Book Launch of “Magis Mantra”", date: "", location: "St. Xavier's University", category: "Cultural", year: 2023, description: "Celebrating the journey of Father Felix Raj, SJ, Vice-Chancellor St Xavier’s University.", images: ["/v2.webp", "/v3.webp", "/v4.webp", "/e1.webp"] },
+  { id: 2, title: "Blanket Distribution", date: "", location: "Kolkata", category: "Awareness", year: 2023, description: "An initiative by FACES with Abdus Shokur Foundation and Anti-Hunger Squad Foundation.", images: ["/v9.webp", "/v10.webp", "/e2.webp", "/e3.webp"] },
+  { id: 3, title: "Christmas Cake Mixing Ritual", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "NIPS, in association with FACES, celebrated the joyous festival of Christmas with the cake mixing ritual.", images: ["/e4.webp", "/e5.webp", "/e6.webp",] },
+  { id: 4, title: "Documentary by Zara Bhardwaj on Communal Harmony", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e7.webp", "/v11.webp", "/e9.webp", "/e10.webp", "/e8.webp"] },
+  { id: 5, title: "Book Launch of 'Comarades and Comebacks' by Saira Shah Halim", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e11.webp", "/e12.webp", "/e13.webp", "/e14.webp"] },
+  { id: 6, title: "Education Summit", date: "", location: "Kolkata", category: "Summit", year: 2023, description: "Supported by FACES.", images: ["/v7.webp", "/e15.webp", "/e16.webp", "/e17.webp"] },
+  { id: 7, title: "Book Launch of 'The Far Side'", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e18.webp", "/e19.webp", "/e20.webp", "/e21.webp"] },
+  { id: 8, title: "Gurukul Awards", date: "", location: "Kolkata", category: "Gala", year: 2023, description: "Supported by FACES.", images: ["/e22.webp", "/e23.webp", "/e24.webp", "/e25.webp"] },
+  { id: 9, title: "Amity Half Marathon", date: "", location: "Kolkata", category: "Sports", year: 2022, description: "Supported by FACES.", images: ["/e26.webp", "/e27.webp", "/e28.webp", "/e29.webp"] },
+  { id: 10, title: "The Creative Arts", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/v8.webp", "/e30.webp", "/e31.webp", "/e32.webp"] },
+  { id: 11, title: "World Suicide Prevention Day Celebration", date: "", location: "Kolkata", category: "Awareness", year: 2022, description: "Supported by FACES.", images: ["/e33.webp", "/e34.webp", "/e35.webp", "/e36.webp"] },
+  { id: 12, title: "Zard Sitara", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/e40.webp", "/e41.webp", "/e42.webp", "/e43.webp"] },
+  { id: 13, title: "Walk Against the Killing of Girl Child", date: "", location: "Kolkata", category: "Awareness", year: 2022, description: "Supported by FACES.", images: ["/v6.webp", "/e37.webp", "/e38.webp", "/e39.webp"] },
 ];
 
 const CAT_COLOR: Record<string, string> = {
@@ -219,10 +219,6 @@ function LegacyStatsSection() {
   return (
     <section className="legacy-stats-section">
       <div className="container-xl">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="legacy-stats-header">
-          <div className="legacy-eyebrow">✦ A LEGACY IN NUMBERS</div>
-          <h2 className="legacy-title">Decades of <span className="italic">Measured</span> Excellence</h2>
-        </motion.div>
 
         <div className="legacy-stats-grid">
           {stats.map((s, i) => (
@@ -285,7 +281,7 @@ export default function EventPage() {
                     position: 'relative', width: '90%', height: '90%', borderRadius: '24px', overflow: 'hidden',
                     boxShadow: '0 40px 80px rgba(0,0,0,0.8), 0 0 100px rgba(201,168,76,0.3)', zIndex: 1, border: '1px solid rgba(201,168,76,0.5)'
                   }}>
-                  <img src="/v11.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/v11.webp" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: '#0a1628', opacity: 0.25, pointerEvents: 'none', mixBlendMode: 'multiply' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(10,22,40,0.6),transparent)', pointerEvents: 'none' }} />
                 </motion.div>

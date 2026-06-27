@@ -4,16 +4,22 @@ import { gsap } from 'gsap';
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(e => console.log('Autoplay prevented', e));
+    }
+  }, []);
+
   const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.96]);
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
-  const imgRotate = useTransform(scrollYProgress, [0, 1], ['3deg', '-2deg']);
 
   // Apple-style blur-in reveal
   useEffect(() => {
@@ -40,12 +46,7 @@ export default function HeroSection() {
     tl.fromTo('.hero-ctas', { opacity: 0, y: 18 }, {
       opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
     }, '-=0.45');
-    tl.fromTo('.hero-img-card', {
-      opacity: 0, y: 60, rotate: 6, filter: 'blur(12px)',
-    }, {
-      opacity: 1, y: 0, rotate: 3, filter: 'blur(0px)',
-      duration: 1.2, ease: 'power4.out',
-    }, '-=0.9');
+
     tl.fromTo('.hero-stats', { opacity: 0, y: 16 }, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     }, '-=0.5');
@@ -72,16 +73,33 @@ export default function HeroSection() {
         backgroundColor: '#000',
       }}
     >
-      {/* ── Cinematic background video ── */}
+      {/* ── Cinematic background image & video ── */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+        {/* Base Image */}
+        <img
+          src="/v1.webp"
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%', objectFit: 'cover',
+            opacity: 0.85,
+            filter: 'brightness(0.95) saturate(1.1)',
+            transform: 'scale(1.05)',
+            zIndex: 0,
+          }}
+        />
+        {/* Video Overlay */}
         <video
+          ref={videoRef}
           autoPlay muted loop playsInline
+          preload="auto"
           src="/also_remove_the_balls.mp4"
           style={{
+            position: 'absolute', inset: 0,
             width: '100%', height: '100%', objectFit: 'cover',
-            opacity: 0.78,
-            filter: 'brightness(0.75) saturate(1.1)',
+            opacity: 0.6,
+            mixBlendMode: 'screen', /* Blends the video beautifully over the image */
             transform: 'scale(1.05)',
+            zIndex: 1,
           }}
         />
       </div>
@@ -90,8 +108,8 @@ export default function HeroSection() {
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
         background: `
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%),
-          linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.65) 100%)
+          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%),
+          linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%)
         `,
       }} />
 
@@ -128,15 +146,15 @@ export default function HeroSection() {
           width: '100%', maxWidth: '1200px',
           padding: '72px 2rem 0',
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           gap: '3rem',
         }}
         className="hero-outer"
       >
-        {/* ── LEFT: Text content ── */}
-        <div style={{ flex: '1 1 460px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        {/* ── CENTER: Text content ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
           {/* Eyebrow badge */}
           <div
@@ -144,79 +162,108 @@ export default function HeroSection() {
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
               padding: '0.38rem 1.05rem',
-              background: 'rgba(255,255,255,0.07)',
+              background: 'rgba(255,255,255,0.15)',
               backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-              border: '0.5px solid rgba(255,255,255,0.16)',
+              border: '1px solid rgba(255,255,255,0.3)',
               borderRadius: '9999px',
               marginBottom: '2.4rem',
               opacity: 0,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
             }}
           >
             <span style={{
               width: '6px', height: '6px', borderRadius: '50%',
               background: 'var(--gold)',
-              boxShadow: '0 0 8px rgba(201,168,76,0.9)',
+              boxShadow: '0 0 8px rgba(201,168,76,1)',
               display: 'inline-block',
               animation: 'heroPulse 2.4s ease-in-out infinite',
             }} />
             <span style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 500,
+              fontFamily: "'Inter', sans-serif", fontWeight: 600,
               fontSize: '0.74rem', letterSpacing: '0.12em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)',
+              textTransform: 'uppercase', color: '#ffffff',
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
             }}>
               Est. 2001 · Since Excellence Began
             </span>
           </div>
 
           {/* Big headline */}
-          <h1
+          <div 
             className="hero-line-1"
             style={{
-              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-              fontWeight: 800,
-              fontSize: 'clamp(4rem, 9vw, 9.5rem)',
-              letterSpacing: '-0.05em',
-              lineHeight: 0.95,
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.88) 45%, var(--gold-light) 75%, #ffffff 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              backgroundSize: '200% 200%',
-              animation: 'heroShimmer 7s ease-in-out infinite',
+              position: 'relative',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              padding: '1.8rem 3.2rem',
+              borderRadius: '20px',
               opacity: 0,
-              marginBottom: '1rem',
+              marginBottom: '1.5rem',
+              display: 'inline-block',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              overflow: 'hidden',
             }}
           >
-            F·A·C·E·S
-          </h1>
+            {/* Subtle inner shine */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.25) 25%, transparent 30%)',
+              backgroundSize: '200% 200%',
+              animation: 'heroShimmer 6s infinite',
+              pointerEvents: 'none',
+              mixBlendMode: 'overlay',
+            }} />
+            <h1
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontWeight: 600,
+                fontSize: 'clamp(4rem, 9vw, 9.5rem)',
+                letterSpacing: '0.45em',
+                marginRight: '-0.45em', /* Centers properly despite letter-spacing on last char */
+                lineHeight: 0.95,
+                color: '#ffffff',
+                margin: 0,
+                filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5))',
+              }}
+            >
+              FACES
+            </h1>
+          </div>
 
           {/* FACES tagline */}
           <p
             className="hero-line-2"
             style={{
               fontFamily: "'Inter', -apple-system, sans-serif",
-              fontWeight: 300,
+              fontWeight: 400,
               fontSize: 'clamp(1rem, 2vw, 1.65rem)',
               letterSpacing: '-0.01em',
-              color: 'rgba(255,255,255,0.72)',
+              color: '#ffffff',
               opacity: 0, marginBottom: '0.4rem',
               lineHeight: 1.35,
+              textShadow: '0 2px 8px rgba(0,0,0,0.4)',
             }}
           >
             Alumni of multi-disciplinary schools
             <br />
-            <span style={{ color: 'rgba(255,255,255,0.45)', fontWeight: 300 }}>&amp; colleges of Kolkata</span>
+            <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>&amp; colleges of Kolkata</span>
           </p>
 
           <p
             className="hero-line-3"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontWeight: 400,
+              fontWeight: 500,
               fontSize: 'clamp(0.78rem, 1.3vw, 0.95rem)',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'rgba(255,255,255,0.95)',
               opacity: 0, marginBottom: '2.4rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
             }}
           >
             Est. 2006 · Non-Profit · Formally Constituted 2007
@@ -224,8 +271,8 @@ export default function HeroSection() {
 
           {/* Thin divider */}
           <div style={{
-            width: '48px', height: '1px',
-            background: 'linear-gradient(90deg, rgba(201,168,76,0.7), transparent)',
+            width: '48px', height: '2px',
+            background: 'linear-gradient(90deg, rgba(201,168,76,0.9), transparent)',
             marginBottom: '2rem',
           }} />
 
@@ -235,12 +282,13 @@ export default function HeroSection() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 400,
-              fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-              lineHeight: 1.8,
-              color: 'rgba(255,255,255,0.5)',
-              maxWidth: '460px',
+              fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
+              lineHeight: 1.7,
+              color: 'rgba(255,255,255,0.95)',
+              maxWidth: '480px',
               marginBottom: '2.8rem',
               opacity: 0,
+              textShadow: '0 2px 8px rgba(0,0,0,0.5)',
             }}
           >
             A non-profit alumni association uniting graduates of multi-disciplinary
@@ -251,7 +299,7 @@ export default function HeroSection() {
           {/* CTA buttons */}
           <div
             className="hero-ctas"
-            style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap', opacity: 0 }}
+            style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap', opacity: 0, justifyContent: 'center' }}
           >
             <a href="#legacy" className="apple-btn-primary">
               Explore Our Legacy
@@ -321,93 +369,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── RIGHT: v1.jpeg floating card ── */}
-        <motion.div
-          className="hero-img-card"
-          style={{
-            flex: '0 0 auto',
-            width: 'clamp(260px, 32vw, 420px)',
-            opacity: 0,
-            rotate: imgRotate,
-            y: imgY,
-            position: 'relative',
-          }}
-        >
-          {/* Glow aura behind card */}
-          <div style={{
-            position: 'absolute',
-            inset: '-20px',
-            borderRadius: '28px',
-            background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.18) 0%, transparent 70%)',
-            filter: 'blur(20px)',
-            zIndex: 0,
-          }} />
 
-          {/* Card */}
-          <div style={{
-            position: 'relative', zIndex: 1,
-            borderRadius: '20px',
-            overflow: 'hidden',
-            boxShadow: `
-              0 0 0 0.5px rgba(255,255,255,0.1),
-              0 24px 60px rgba(0,0,0,0.6),
-              0 8px 24px rgba(0,0,0,0.4),
-              inset 0 1px 0 rgba(255,255,255,0.12)
-            `,
-            background: '#111',
-          }}>
-            <img
-              src="/v1.jpeg"
-              alt="FACES — St. Stephen's School, Bowbazar"
-              style={{
-                width: '100%',
-                display: 'block',
-                objectFit: 'cover',
-              }}
-            />
-            {/* Subtle inner gloss */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, transparent 40%)',
-              pointerEvents: 'none',
-            }} />
-          </div>
-
-          {/* Floating badge below image */}
-          <div style={{
-            position: 'absolute',
-            bottom: '-18px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(20,20,24,0.9)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '0.5px solid rgba(255,255,255,0.12)',
-            borderRadius: '9999px',
-            padding: '0.4rem 1.1rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            whiteSpace: 'nowrap',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
-            zIndex: 2,
-          }}>
-            <span style={{
-              width: '5px', height: '5px', borderRadius: '50%',
-              background: '#34c759',
-              boxShadow: '0 0 6px rgba(52,199,89,0.8)',
-              flexShrink: 0,
-            }} />
-            <span style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '0.72rem', fontWeight: 500,
-              letterSpacing: '0.06em',
-              color: 'rgba(255,255,255,0.7)',
-            }}>
-              Admissions Open 2025–26
-            </span>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* ── Scroll hint ── */}

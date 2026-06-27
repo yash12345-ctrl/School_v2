@@ -4,33 +4,33 @@ import { motion, useInView } from 'framer-motion';
 const alumni = [
   {
     id: 'alumni-felix',
-    name: 'Fr. Felix Raj, SJ',
-    role: 'Vice-Chancellor',
-    company: "St. Xavier's University, Kolkata",
+    name: 'Book Launch: "Magis Mantra"',
+    role: 'Celebrating The Journey',
+    company: 'Father Felix Raj, SJ',
     year: 'Honoured 2024',
-    achievement: 'A Jesuit educator, administrator, and visionary whose life of service has shaped thousands of students across Kolkata and beyond.',
-    image: '/v2.png',
+    achievement: "A landmark event celebrating the inspiring journey of the Vice-Chancellor, St. Xavier's University.",
+    image: '/v2.webp',
     tag: 'Education',
   },
   {
     id: 'alumni-magis',
-    name: '"Magis Mantra"',
-    role: 'Book Launch',
+    name: 'Blanket Distribution',
+    role: 'Community Initiative',
     company: 'FACES Alumni Association',
-    year: 'Event 2024',
-    achievement: 'A landmark publication celebrating the philosophy of "doing more" — documenting Fr. Felix Raj\'s transformative journey and enduring legacy.',
-    image: '/v3.png',
-    tag: 'Literature',
+    year: 'Winter 2024',
+    achievement: 'A collaborative initiative by FACES, in partnership with the Abdus Shokur Foundation and the Anti-Hunger Squad Foundation.',
+    image: '/e2.webp',
+    tag: 'Community',
   },
   {
     id: 'alumni-faces',
-    name: 'FACES Kolkata',
-    role: 'Alumni Association',
-    company: 'Multi-disciplinary Schools & Colleges',
-    year: 'Est. 2006',
-    achievement: 'Uniting alumni across schools and colleges of Kolkata — driving 50+ social, cultural, and philanthropic activities over 20 years.',
-    image: '/v4.png',
-    tag: 'Community',
+    name: 'Communal Harmony',
+    role: 'Documentary Film',
+    company: 'By Zara Bhardwaj',
+    year: 'Project 2024',
+    achievement: 'A powerful documentary film exploring communal harmony, proudly supported by FACES.',
+    image: '/e7.webp',
+    tag: 'Film',
   },
 ];
 
@@ -53,29 +53,65 @@ export default function AlumniSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ marginBottom: '4rem' }}
+          style={{ marginBottom: '5rem', position: 'relative' }}
         >
-          <div className="text-overline" style={{ color: 'var(--gold)' }}>
-            ✦ A Landmark FACES Event
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            marginBottom: '1.5rem',
+          }}>
+            <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>✦</span>
+            <span style={{
+              color: 'var(--navy)',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase'
+            }}>Curated Experiences</span>
           </div>
-          <div className="gold-divider" />
-          <h2 className="text-display-lg" style={{ color: 'var(--navy)', maxWidth: '700px', marginTop: '0.5rem' }}>
-            Book Launch of
+
+          <h2 className="text-display-lg" style={{
+            color: 'var(--navy)',
+            maxWidth: '800px',
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            margin: 0
+          }}>
+            Featured
             <br />
-            <em>"Magis Mantra"</em>
+            <em style={{
+              fontFamily: 'Playfair Display, serif',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              color: 'var(--gold)',
+              paddingRight: '0.1em'
+            }}>Engagements & Events</em>
           </h2>
+
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: 'var(--gold)',
+            marginTop: '2rem',
+            marginBottom: '2rem',
+            opacity: 0.6
+          }} />
+
           <p style={{
-            color: 'var(--gray-mid)',
+            color: '#555',
             maxWidth: '540px',
             lineHeight: 1.8,
-            marginTop: '1rem',
-            fontSize: '0.95rem',
+            fontSize: '1.05rem',
+            fontWeight: 400,
+            margin: 0
           }}>
-            Celebrating the extraordinary journey of <strong style={{ color: 'var(--navy)' }}>Fr. Felix Raj, SJ</strong> —
-            Vice-Chancellor, St. Xavier's University, Kolkata. A tribute to vision, faith, and transformative leadership.
+            Discover our landmark gatherings that unite the alumni network across
+            schools and colleges of Kolkata, driving social and cultural impact.
           </p>
         </motion.div>
-
         {/* Cards Grid */}
         <div style={{
           display: 'grid',
@@ -153,38 +189,44 @@ export default function AlumniSection() {
 
               {/* Content */}
               <div style={{ padding: '1.5rem' }}>
-                <h3 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.5rem',
-                  fontWeight: 600,
-                  color: 'var(--navy)',
-                  marginBottom: '0.25rem',
-                }}>
-                  {person.name}
-                </h3>
-                <div style={{
-                  fontSize: '0.78rem',
-                  fontWeight: 600,
-                  color: 'var(--royal-light)',
-                  letterSpacing: '0.05em',
-                  marginBottom: '0.15rem',
-                  textTransform: 'uppercase',
-                }}>
-                  {person.role}
-                </div>
-                <div style={{
-                  fontSize: '0.78rem',
-                  color: 'var(--gray-mid)',
-                  marginBottom: '1rem',
-                }}>
-                  {person.company}
-                </div>
+                {person.name && (
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.5rem',
+                    fontWeight: 600,
+                    color: 'var(--navy)',
+                    marginBottom: '0.25rem',
+                  }}>
+                    {person.name}
+                  </h3>
+                )}
+                {person.role && (
+                  <div style={{
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    color: 'var(--royal-light)',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.15rem',
+                    textTransform: 'uppercase',
+                  }}>
+                    {person.role}
+                  </div>
+                )}
+                {person.company && (
+                  <div style={{
+                    fontSize: '0.78rem',
+                    color: 'var(--gray-mid)',
+                    marginBottom: '1rem',
+                  }}>
+                    {person.company}
+                  </div>
+                )}
                 <p style={{
                   fontSize: '0.88rem',
                   color: '#555',
                   lineHeight: 1.7,
-                  borderTop: '1px solid var(--gray-light)',
-                  paddingTop: '1rem',
+                  borderTop: person.name ? '1px solid var(--gray-light)' : 'none',
+                  paddingTop: person.name ? '1rem' : '0',
                 }}>
                   {person.achievement}
                 </p>
