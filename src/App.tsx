@@ -12,6 +12,7 @@ import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import EventPage from './event/event';
 import About from './about/about';
+import MemberPage from './member/member';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -32,6 +33,16 @@ export default function App() {
       <>
         <Navbar />
         <About />
+        <Footer />
+      </>
+    );
+  }
+
+  if (currentPath === '/member') {
+    return (
+      <>
+        <Navbar />
+        <MemberPage />
         <Footer />
       </>
     );
