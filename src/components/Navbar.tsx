@@ -7,7 +7,7 @@ const navItems = [
   { label: 'Member', href: '/member' },
   { label: 'Events', href: '/event' },
   { label: 'Media', href: '/media' },
-  { label: 'Donate', href: '/#donate' },
+  { label: 'Donate', href: '/donate' },
 ];
 
 export default function Navbar() {

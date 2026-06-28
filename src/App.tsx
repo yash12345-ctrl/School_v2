@@ -13,6 +13,7 @@ import EventPage from './event/event';
 import About from './about/about';
 import MemberPage from './member/member';
 import MediaPage from './media/media';
+import DonatePage from './donate/donate';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -50,6 +51,16 @@ export default function App() {
 
   if (currentPath === '/media') {
     return <MediaPage />;
+  }
+
+  if (currentPath === '/donate') {
+    return (
+      <>
+        <Navbar />
+        <DonatePage />
+        <Footer />
+      </>
+    );
   }
 
   // Lenis smooth scrolling
