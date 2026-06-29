@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, ShieldCheck, Copy, CheckCircle2, ChevronDown, ChevronDown as ScrollArrow } from 'lucide-react';
+import { Heart, Copy, CheckCircle2, ChevronDown, ChevronDown as ScrollArrow, Globe, BookOpen } from 'lucide-react';
 import './donate.css';
 
 const FAQS = [
@@ -48,7 +48,7 @@ export default function DonatePage() {
           <img src="/n2.webp" alt="Alumni campus" className="donate-hero-bg" />
           <div className="donate-hero-overlay"></div>
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export default function DonatePage() {
       <section className="donate-page-block donate-form-page">
         <div className="container-lg">
           <div className="donate-grid">
-            
+
             {/* Left Column: About FACES Organization Information */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -86,40 +86,32 @@ export default function DonatePage() {
               className="donate-info-panel"
             >
               <div>
-                <h2 className="panel-title">About FACES</h2>
+                <h2 className="panel-title">FACES</h2>
                 <div className="gold-divider" />
                 <p className="panel-subtitle">Non-profit alumni association, est. 2006 — Kolkata</p>
-                
-                <div className="highlight-list">
-                  <div className="highlight-item">
-                    <span className="highlight-star">✦</span>
-                    <span>Alumni network across multi-disciplinary schools &amp; colleges</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-star">✦</span>
-                    <span>Social, cultural &amp; philanthropic initiatives for weaker sections</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-star">✦</span>
-                    <span>Awareness drives — gender equality, girl child education, civic issues</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-star">✦</span>
-                    <span>18+ years of community service &amp; landmark campaigns</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="donate-security-note">
-                <ShieldCheck className="shield-icon" size={24} />
-                <div>
-                  <h4>Tax Exemption & Audits</h4>
-                  <p>All direct bank transfers qualify for 80G tax exemptions. Send your transfer receipt to pr@facesalumni.org to request your certificate.</p>
+                <div className="faces-bento-grid">
+                  <div className="bento-box bento-large">
+                    <span className="bento-number">18+</span>
+                    <span className="bento-label">Years of Service</span>
+                    <p className="bento-desc">Dedicated to community welfare and social upliftment since 2006.</p>
+                  </div>
+
+                  <div className="bento-box">
+                    <span className="bento-icon"><Globe size={28} /></span>
+                    <span className="bento-label">Global Alumni</span>
+                  </div>
+
+                  <div className="bento-box">
+                    <span className="bento-icon"><BookOpen size={28} /></span>
+                    <span className="bento-label">Education</span>
+                  </div>
+
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Column: Bank Details Card */}
+            {/* Right Column: Premium Bank Details Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -127,94 +119,73 @@ export default function DonatePage() {
               transition={{ duration: 0.8 }}
               className="donate-bank-details-panel"
             >
-              <div className="bank-details-card">
-                <div className="card-header-block">
-                  <h3 className="bank-card-title">BANK DETAILS</h3>
-                  <p className="bank-card-subtitle">Instant domestic transfers directly to our NGO account.</p>
-                </div>
+              <div className="premium-bank-card-container">
+                <div className="physical-bank-card">
+                  {/* Holographic glare overlay */}
+                  <div className="card-glare"></div>
 
-                <div className="details-fields-list">
-                  
-                  {/* Field: Bank Name */}
-                  <div className="detail-item-field">
-                    <div className="field-info-wrap">
-                      <span className="field-label">BANK NAME</span>
-                      <span className="field-value">{bankDetails.bankName}</span>
+                  <div className="card-top-row">
+                    <div className="card-chip">
+                      <div className="chip-line"></div>
+                      <div className="chip-line"></div>
+                      <div className="chip-line"></div>
                     </div>
-                    <button
-                      type="button"
-                      className="copy-field-btn"
-                      onClick={() => handleCopy(bankDetails.bankName, 'bankName')}
-                      aria-label="Copy Bank Name"
-                    >
-                      {copiedField === 'bankName' ? <CheckCircle2 size={18} className="success-copy-icon" /> : <Copy size={18} />}
-                    </button>
+                    <img src="/v1.webp" alt="FACES Logo" className="card-logo-img" />
                   </div>
 
-                  {/* Field: Branch */}
-                  <div className="detail-item-field">
-                    <div className="field-info-wrap">
-                      <span className="field-label">BRANCH</span>
-                      <span className="field-value">{bankDetails.branch}</span>
+                  <div className="card-number-group">
+                    <span className="card-label">ACCOUNT NUMBER</span>
+                    <div className="card-number-flex">
+                      <span className="card-value-large">{bankDetails.accountNumber}</span>
+                      <button
+                        type="button"
+                        className="icon-copy-btn"
+                        onClick={() => handleCopy(bankDetails.accountNumber, 'accountNumber')}
+                        aria-label="Copy Account Number"
+                      >
+                        {copiedField === 'accountNumber' ? <CheckCircle2 size={16} className="success-copy-icon" /> : <Copy size={16} />}
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className="copy-field-btn"
-                      onClick={() => handleCopy(bankDetails.branch, 'branch')}
-                      aria-label="Copy Branch Name"
-                    >
-                      {copiedField === 'branch' ? <CheckCircle2 size={18} className="success-copy-icon" /> : <Copy size={18} />}
-                    </button>
                   </div>
 
-                  {/* Field: Account Number */}
-                  <div className="detail-item-field">
-                    <div className="field-info-wrap">
-                      <span className="field-label">ACCOUNT NUMBER</span>
-                      <span className="field-valueHighlight">{bankDetails.accountNumber}</span>
+                  <div className="card-bottom-row">
+                    <div className="card-field">
+                      <span className="card-label">BANK NAME</span>
+                      <span className="card-value-small">{bankDetails.bankName}</span>
                     </div>
-                    <button
-                      type="button"
-                      className="copy-field-btn"
-                      onClick={() => handleCopy(bankDetails.accountNumber, 'accountNumber')}
-                      aria-label="Copy Account Number"
-                    >
-                      {copiedField === 'accountNumber' ? <CheckCircle2 size={18} className="success-copy-icon" /> : <Copy size={18} />}
-                    </button>
-                  </div>
-
-                  {/* Field: IFSC Code */}
-                  <div className="detail-item-field">
-                    <div className="field-info-wrap">
-                      <span className="field-label">IFSC CODE</span>
-                      <span className="field-valueHighlight">{bankDetails.ifscCode}</span>
+                    <div className="card-field">
+                      <span className="card-label">IFSC CODE</span>
+                      <div className="card-number-flex">
+                        <span className="card-value-small">{bankDetails.ifscCode}</span>
+                        <button
+                          type="button"
+                          className="icon-copy-btn"
+                          onClick={() => handleCopy(bankDetails.ifscCode, 'ifscCode')}
+                          aria-label="Copy IFSC Code"
+                        >
+                          {copiedField === 'ifscCode' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
+                        </button>
+                      </div>
                     </div>
-                    <button
-                      type="button"
-                      className="copy-field-btn"
-                      onClick={() => handleCopy(bankDetails.ifscCode, 'ifscCode')}
-                      aria-label="Copy IFSC Code"
-                    >
-                      {copiedField === 'ifscCode' ? <CheckCircle2 size={18} className="success-copy-icon" /> : <Copy size={18} />}
-                    </button>
                   </div>
 
                 </div>
+
+                <p className="bank-card-note">Instant domestic transfers directly to our NGO account.</p>
 
                 {/* Toast Notification */}
                 <AnimatePresence>
                   {copiedField && (
                     <motion.div
                       className="copy-toast"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.9 }}
                     >
                       Copied to clipboard!
                     </motion.div>
                   )}
                 </AnimatePresence>
-
               </div>
             </motion.div>
 
@@ -236,19 +207,24 @@ export default function DonatePage() {
 
           <div className="faq-accordion">
             {FAQS.map((faq, index) => (
-              <div key={index} className={`faq-item ${faqOpenIndex === index ? 'open' : ''}`}>
-                <button className="faq-question" onClick={() => toggleFaq(index)}>
-                  <span>{faq.q}</span>
-                  <ChevronDown size={18} className="faq-arrow" />
+              <div key={index} className={`faq-item-premium ${faqOpenIndex === index ? 'open' : ''}`}>
+                <button className="faq-question-premium" onClick={() => toggleFaq(index)}>
+                  <div className="faq-question-text">
+                    <span className="faq-number">{String(index + 1).padStart(2, '0')}</span>
+                    <span>{faq.q}</span>
+                  </div>
+                  <div className="faq-icon-wrapper">
+                    <ChevronDown size={20} className="faq-arrow-premium" />
+                  </div>
                 </button>
                 <AnimatePresence>
                   {faqOpenIndex === index && (
                     <motion.div
-                      className="faq-answer"
+                      className="faq-answer-premium"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
                       <p>{faq.a}</p>
                     </motion.div>

@@ -37,13 +37,13 @@
   height: 100%;
   object-fit: cover;
   transform: scale(1.03);
-  filter: brightness(0.5) contrast(1.1);
+  filter: brightness(0.8) contrast(1.1);
 }
 
 .donate-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(15, 32, 68, 0.88) 100%);
+  background: linear-gradient(135deg, rgba(10, 22, 40, 0.75) 0%, rgba(15, 32, 68, 0.65) 100%);
 }
 
 .donate-hero-content {
@@ -166,67 +166,114 @@
   gap: 2.5rem;
 }
 
+.panel-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
 .panel-subtitle {
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--gray-mid);
+  font-size: 1.05rem;
+  color: #666;
   margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   letter-spacing: 0.02em;
 }
 
-.highlight-list {
+.faces-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bento-box {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.highlight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  color: #333;
-  line-height: 1.5;
+.bento-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(201, 168, 76, 0.1);
 }
 
-.highlight-star {
-  color: var(--gold);
-  font-size: 0.85rem;
-  flex-shrink: 0;
-  margin-top: 0.2rem;
+.bento-large {
+  grid-column: span 2;
 }
 
-.donate-security-note {
-  display: flex;
+.bento-wide {
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
   gap: 1.25rem;
-  padding: 1.5rem;
-  border-radius: 14px;
-  background: rgba(52, 199, 89, 0.05);
-  border: 1px solid rgba(52, 199, 89, 0.15);
-  color: #1e6b30;
-  margin-top: 1rem;
 }
 
-.donate-security-note h4 {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+.bento-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3rem;
   font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.bento-label {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
   margin-bottom: 0.25rem;
 }
 
-.donate-security-note p {
+.bento-desc {
   font-family: var(--font-body);
-  font-size: 0.82rem;
-  color: rgba(30, 107, 48, 0.85);
-  line-height: 1.45;
-  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.bento-icon {
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.bento-security {
+  background: rgba(52, 199, 89, 0.05);
+  border-color: rgba(52, 199, 89, 0.15);
+  color: #1e6b30;
 }
 
 .shield-icon {
   flex-shrink: 0;
   color: #34c759;
+}
+
+.bento-text h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.bento-text p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(30, 107, 48, 0.85);
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* Right Column: Bank Details Card */
@@ -236,122 +283,163 @@
   width: 100%;
 }
 
-.bank-details-card {
-  background: var(--white);
-  border-radius: 30px;
-  padding: 3rem 2.5rem;
+.premium-bank-card-container {
   width: 100%;
-  max-width: 460px;
-  box-shadow: 0 25px 60px rgba(10, 22, 40, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  max-width: 440px;
+  perspective: 1000px;
+}
+
+.physical-bank-card {
+  position: relative;
+  background: linear-gradient(135deg, #161c2d 0%, #0a0f1e 100%);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  color: #fff;
+  box-shadow: 0 25px 50px rgba(10, 22, 40, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.physical-bank-card:hover {
+  transform: rotateY(5deg) rotateX(2deg) translateY(-5px);
+  box-shadow: -10px 35px 60px rgba(10, 22, 40, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.card-glare {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  transition: transform 0.5s ease;
+}
+
+.physical-bank-card:hover .card-glare {
+  transform: rotate(30deg) translate(20%, 20%);
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.card-chip {
+  width: 48px;
+  height: 36px;
+  background: linear-gradient(135deg, #dfc685 0%, #a68434 100%);
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 4px;
 }
 
-/* Golden highlight border at top of card */
-.bank-details-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+.chip-line {
+  height: 1px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.card-header-block {
-  text-align: center;
+.card-logo-img {
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  border-radius: 4px;
+}
+
+.card-number-group {
   margin-bottom: 2rem;
 }
 
-.bank-card-title {
+.card-label {
+  display: block;
   font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 1.75rem;
-  color: #111;
-  letter-spacing: 0.02em;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 0.5rem;
 }
 
-.bank-card-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.4;
-}
-
-.details-fields-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-/* Bank detail text rows styling matching mock-up */
-.detail-item-field {
+.card-number-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f7f4ed; /* cream tone matching screen capture */
-  border-radius: 16px;
-  padding: 1.1rem 1.5rem;
-  transition: all 0.3s ease;
 }
 
-.detail-item-field:hover {
-  background: #f3edd9;
-}
-
-.field-info-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.field-label {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
+.card-value-large {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.6rem;
+  letter-spacing: 0.15em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gray-mid);
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-field {
+  flex: 1;
+}
+
+.card-value-small {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.field-value {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #222;
-}
-
-.field-valueHighlight {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #111;
-  letter-spacing: 0.02em;
-}
-
-.copy-field-btn {
-  background: #e8e3d5;
-  border: none;
-  width: 36px;
-  height: 36px;
+.icon-copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #555;
   cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+  transition: all 0.2s;
 }
 
-.copy-field-btn:hover {
+.icon-copy-btn:hover {
   background: var(--gold);
-  color: var(--white);
-  transform: scale(1.05);
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.success-copy-icon {
+  color: #fff;
+}
+
+.bank-card-note {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  margin-top: 1.5rem;
 }
 
 .success-copy-icon {
@@ -380,66 +468,97 @@
 }
 
 .faq-accordion {
-  max-width: 800px;
-  margin: 3.5rem auto 0;
+  max-width: 900px;
+  margin: 4rem auto 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
   width: 100%;
 }
 
-.faq-item {
-  background: var(--white);
-  border: 1px solid rgba(201, 168, 76, 0.12);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+.faq-item-premium {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.faq-item.open {
-  border-color: var(--gold);
-  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.05);
+.faq-item-premium:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.faq-question {
+.faq-question-premium {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 1.5rem;
   background: transparent;
   border: none;
   text-align: left;
   cursor: pointer;
+  padding: 0.5rem 0;
 }
 
-.faq-question span {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
+.faq-question-text {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.faq-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.faq-question-text span:last-child {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
   color: var(--navy);
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 
-.faq-arrow {
-  color: var(--gray-mid);
-  transition: transform 0.3s ease;
-}
-
-.faq-item.open .faq-arrow {
-  transform: rotate(180deg);
+.faq-item-premium:hover .faq-question-text span:last-child {
   color: var(--gold);
 }
 
-.faq-answer {
+.faq-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-arrow-premium {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item-premium.open .faq-icon-wrapper {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+  transform: rotate(180deg);
+}
+
+.faq-answer-premium {
   overflow: hidden;
 }
 
-.faq-answer p {
-  padding: 0 1.5rem 1.5rem;
+.faq-answer-premium p {
+  padding: 1rem 0 1rem 3rem;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 750px;
 }
 
 /* Responsive Styles */
