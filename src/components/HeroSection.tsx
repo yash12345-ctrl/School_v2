@@ -144,12 +144,12 @@ export default function HeroSection() {
           opacity, y, scale,
           position: 'relative', zIndex: 5,
           width: '100%', maxWidth: '1200px',
-          padding: '72px 2rem 0',
+          padding: '40px 2rem 0',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '3rem',
+          gap: '2rem',
         }}
         className="hero-outer"
       >
@@ -166,7 +166,7 @@ export default function HeroSection() {
               backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
               border: '1px solid rgba(255,255,255,0.3)',
               borderRadius: '9999px',
-              marginBottom: '2.4rem',
+              marginBottom: '1.5rem',
               opacity: 0,
               boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
             }}
@@ -219,7 +219,7 @@ export default function HeroSection() {
               style={{
                 position: 'relative',
                 zIndex: 1,
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontFamily: "'Avenir Next', 'Avenir', sans-serif",
                 fontWeight: 600,
                 fontSize: 'clamp(4rem, 9vw, 9.5rem)',
                 letterSpacing: '0.45em',
@@ -286,7 +286,7 @@ export default function HeroSection() {
               lineHeight: 1.7,
               color: 'rgba(255,255,255,0.95)',
               maxWidth: '480px',
-              marginBottom: '2.8rem',
+              marginBottom: '2rem',
               opacity: 0,
               textShadow: '0 2px 8px rgba(0,0,0,0.5)',
             }}
@@ -319,7 +319,7 @@ export default function HeroSection() {
               display: 'flex',
               alignItems: 'center',
               gap: '0',
-              marginTop: '2.8rem',
+              marginTop: '1.8rem',
               opacity: 0,
             }}
           >

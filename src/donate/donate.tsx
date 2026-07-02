@@ -45,7 +45,7 @@ export default function DonatePage() {
       {/* ─── Page Block 1: Hero Header ─── */}
       <header className="donate-hero donate-page-block">
         <div className="donate-hero-bg-wrapper">
-          <img src="/n2.webp" alt="Alumni campus" className="donate-hero-bg" />
+          <img src="/n22.webp" alt="Alumni campus" className="donate-hero-bg" />
           <div className="donate-hero-overlay"></div>
         </div>
 

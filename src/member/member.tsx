@@ -8,7 +8,109 @@ interface Member {
   email: string;
   phone: string;
   image?: string;
+  address?: string;
 }
+
+const PATRONS_LIST: Member[] = [
+  {
+    title: 'Mr.',
+    name: 'Taranjit Singh',
+    email: 'md@jisgroup.org',
+    phone: '9830041943',
+    address: '7,Sarat Bose road,kolkata-700020'
+  },
+  {
+    title: 'Mr.',
+    name: 'Siddhartha Sawansukha',
+    email: 'sawansukha@gmail.com',
+    phone: '9830057486',
+    address: '9,Camac street,kolkata-700017'
+  },
+  {
+    title: 'Mr.',
+    name: 'Nandu K Belani',
+    email: 'md@jisgroup.org',
+    phone: '9831005553',
+    address: '69,Ganesh Chandra Avenue,kolkata-700013'
+  },
+  {
+    title: 'Mr.',
+    name: 'Hari Prasad Sharma',
+    email: 'hari@shreershgroup.com',
+    phone: '9830041111',
+    address: '20,Lee Road,Kolkata-700020'
+  },
+  {
+    title: 'Mr.',
+    name: 'Alok Sharma',
+    email: 'emailalok@hotmail.com',
+    phone: '9830991817',
+    address: '56/2,Hazra Road,3rd floor,kolkata-700019'
+  },
+  {
+    title: 'Mr.',
+    name: 'Anirudh Daga',
+    email: 'info@avaniestates.com',
+    phone: '22895811/12',
+    address: '59 A chowringhee Road,kolkata-700020'
+  },
+  {
+    title: 'Mr.',
+    name: 'Sumit Dabriwala',
+    email: '',
+    phone: '9830011661',
+    address: '225C AJC Bose Road,kolkata,4th floor,700020'
+  },
+  {
+    title: 'Mr.',
+    name: 'Umesh Choudhary',
+    email: 'corp@titagarh.biz',
+    phone: '9830006000',
+    address: '39 Shakespeare Sarani, 4th floor, kolkata-700017'
+  },
+  {
+    title: 'Mr.',
+    name: 'Prashant Gupta',
+    email: '',
+    phone: '',
+    address: '49 C Purna Das Road,kolkata-700029'
+  },
+  {
+    title: 'Mr.',
+    name: 'Waseem Ahmed',
+    email: 'waseem.ahmed@trdeworldwide.co.in',
+    phone: '9831019996',
+    address: '3A, Ripon Lane,Mezzanine Floor,kolkata-700016'
+  },
+  {
+    title: 'Mr.',
+    name: 'T.S. Walia',
+    email: 'tsw@walson.in',
+    phone: '9830010602',
+    address: 'Bawa Walson,5A Sudder Street,Kolkata-700016'
+  },
+  {
+    title: 'Mr.',
+    name: 'Surinder Saraf',
+    email: 'saraf1958@gmail.com',
+    phone: '9830020840',
+    address: '35 C.R. Avenue,kolkata-700012'
+  },
+  {
+    title: 'Mr.',
+    name: 'Kalyan Sarkar',
+    email: 'kalyan@standardpublicity.in',
+    phone: '9831015843',
+    address: '7/1C Lindsay Street,Kolkata-700083'
+  },
+  {
+    title: 'Mr.',
+    name: 'Amit Saraogi',
+    email: 'amitsaraogi@anmolgroups.com',
+    phone: '7631200000 / 03340281000',
+    address: 'Unit No.609,612, 6th Floor, 31F Galleria, kolkata-700156'
+  }
+];
 
 const EMINENT_MEMBERS: Member[] = [
   {
@@ -1211,38 +1313,90 @@ const EMINENT_MEMBERS: Member[] = [
     phone: '9831008695'
   }
 ];
-
-const getInitials = (name: string) => {
-  const parts = name.split(' ');
-  const cleanParts = parts.filter(
-    part => !/^(Mr\.?|Ms\.?|Mrs\.?|Dr\.?)$/i.test(part) && part.length > 0
-  );
-  if (cleanParts.length === 0) return 'M';
-  if (cleanParts.length === 1) return cleanParts[0].substring(0, 2).toUpperCase();
-  return (cleanParts[0][0] + cleanParts[cleanParts.length - 1][0]).toUpperCase();
-};
-
 export default function MemberPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [activeTab, setActiveTab] = useState<'members' | 'patrons'>('members');
   const membersPerPage = 12;
-  const totalPages = Math.ceil(EMINENT_MEMBERS.length / membersPerPage);
+
+  const currentList = activeTab === 'members' ? EMINENT_MEMBERS : PATRONS_LIST;
+
+  const filteredMembers = searchQuery.trim()
+    ? currentList.filter(m =>
+        m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        m.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (m.phone && m.phone.includes(searchQuery))
+      )
+    : currentList;
+
+  const totalPages = Math.ceil(filteredMembers.length / membersPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     document.querySelector('.eminent-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
+
   const startIndex = (currentPage - 1) * membersPerPage;
-  const visibleMembers = EMINENT_MEMBERS.slice(startIndex, startIndex + membersPerPage);
+  const visibleMembers = filteredMembers.slice(startIndex, startIndex + membersPerPage);
 
   return (
     <div className="member-page">
       {/* ─── Hero Section ─── */}
-      <header className="member-hero">
+      <header className="member-hero relative overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/A1.webp" 
+            alt="Members Background" 
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-navy/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy" />
+        </div>
+
+        {/* Animated Background Lights */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.25, 1],
+              opacity: [0.15, 0.35, 0.15],
+              x: [0, 20, 0],
+              y: [0, -20, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-[20%] -left-[10%] w-[50%] h-[60%] rounded-full bg-[#c9a84c] blur-[140px] mix-blend-screen"
+          />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.4, 1],
+              opacity: [0.1, 0.25, 0.1],
+              x: [0, -30, 0],
+              y: [0, 30, 0]
+            }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[50%] rounded-full bg-[#2952a3] blur-[150px] mix-blend-screen"
+          />
+          <motion.div 
+            animate={{ 
+              opacity: [0.05, 0.15, 0.05],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute top-[30%] left-[40%] w-[40%] h-[40%] rounded-full bg-[#ffffff] blur-[120px] mix-blend-screen"
+          />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="relative z-10"
         >
           <h1 className="member-hero-title">FACES - Members</h1>
           <p className="member-hero-subtitle">✦ Our Distinguished Alumni ✦</p>
@@ -1292,7 +1446,7 @@ export default function MemberPage() {
               transition={{ delay: 0.1 }}
             >
               <div className="team-member-photo">
-                <img src="/a10.png" alt="Imran Zaki" />
+                <img src="/a10.webp" alt="Imran Zaki" />
               </div>
               <div className="team-member-info">
                 <h3 className="team-member-name">Imran Zaki</h3>
@@ -1354,51 +1508,146 @@ export default function MemberPage() {
         </div>
       </section>
 
-      {/* ─── Eminent Personalities Section ─── */}
-      <section className="eminent-section">
+      {/* ─── Tab Switcher ─── */}
+      <div className="member-tab-switcher">
         <motion.div
+          className="member-tab-track"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center' }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title" style={{ marginBottom: '1rem' }}>
-            Some eminent personalities
-          </h2>
-          <p style={{ color: 'var(--gold)', marginBottom: '3rem', fontSize: '1.2rem', fontStyle: 'italic' }}>
-            who are member
-          </p>
+          <button
+            className={`member-tab-btn ${activeTab === 'members' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('members'); setCurrentPage(1); setSearchQuery(''); }}
+          >
+            {activeTab === 'members' && (
+              <motion.div layoutId="tab-indicator" className="member-tab-active-bg" />
+            )}
+            <span className="member-tab-content">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              FACES Member List
+            </span>
+          </button>
+          <button
+            className={`member-tab-btn ${activeTab === 'patrons' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('patrons'); setCurrentPage(1); setSearchQuery(''); }}
+          >
+            {activeTab === 'patrons' && (
+              <motion.div layoutId="tab-indicator" className="member-tab-active-bg" />
+            )}
+            <span className="member-tab-content">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              FACES Patrons List
+            </span>
+          </button>
+        </motion.div>
+      </div>
+
+      {/* ─── Eminent Personalities Section ─── */}
+      <section className="eminent-section">
+
+        {/* ─ Premium Header ─ */}
+        <motion.div
+          className="eminent-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="eminent-header-text">
+            <p className="eminent-overline">Directory</p>
+            <h2 className="eminent-main-title">
+              {activeTab === 'members' ? (
+                <>FACES <em>Member</em><br />List</>
+              ) : (
+                <>FACES <em>Patrons</em><br />List</>
+              )}
+            </h2>
+          </div>
+          <div className="eminent-member-count">
+            {activeTab === 'members' ? EMINENT_MEMBERS.length : PATRONS_LIST.length}
+          </div>
         </motion.div>
 
+        {/* ─ Live Search ─ */}
+        <motion.div
+          className="eminent-search-wrap"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <svg className="eminent-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            className="eminent-search"
+            placeholder="Search by name or email…"
+            value={searchQuery}
+            onChange={handleSearch}
+            aria-label="Search members"
+          />
+        </motion.div>
+
+        {/* ─ Members Grid ─ */}
         <div className="eminent-list">
-          {visibleMembers.map((member, index) => (
-            <motion.div 
+          {visibleMembers.length === 0 ? (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              style={{ color: 'rgba(10,22,40,0.45)', textAlign: 'center', padding: '3rem', gridColumn: '1 / -1', fontFamily: 'var(--font-display)', fontSize: '1.2rem' }}
+            >
+              No members found for "{searchQuery}"
+            </motion.p>
+          ) : visibleMembers.map((member, index) => (
+            <motion.div
               key={startIndex + index}
               className="eminent-item"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: (index % 4) * 0.1 }}
+              transition={{ delay: (index % 6) * 0.06, duration: 0.5 }}
+              onClick={() => setSelectedMember(member)}
+              style={{ cursor: 'pointer' }}
             >
-              <div className="eminent-photo-placeholder">
-                {member.image ? (
-                  <img src={member.image} alt={member.name} />
-                ) : (
-                  getInitials(member.name)
-                )}
+              {/* Serial # */}
+              <div className="eminent-serial">
+                {String(startIndex + index + 1).padStart(3, '0')}
               </div>
+
+              {/* Avatar */}
+              <div className="eminent-avatar-wrap">
+                <div className="eminent-photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '28px', height: '28px', color: 'var(--gold)', opacity: 0.7 }}>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Details */}
               <div className="eminent-details">
-                <h3 className="eminent-name">
-                  {member.title && <span className="eminent-title">{member.title}</span>} {member.name}
-                </h3>
+                <div className="eminent-name-row">
+                  {member.title && <span className="eminent-title">{member.title}</span>}
+                  <h3 className="eminent-name">{member.name}</h3>
+                </div>
                 <div className="eminent-contact-info">
                   <p className="eminent-contact-item">
-                    <span className="contact-label">Email:</span>{' '}
+                    {/* Email icon */}
+                    <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/>
+                    </svg>
                     {member.email ? (
-                      <a 
-                        href={`mailto:${member.email.includes('@') ? member.email : member.email.replace('_', '@')}`} 
-                        className="contact-link"
-                      >
+                      <a href={`mailto:${member.email.includes('@') ? member.email : ''}`} className="contact-link">
                         {member.email}
                       </a>
                     ) : (
@@ -1406,9 +1655,22 @@ export default function MemberPage() {
                     )}
                   </p>
                   <p className="eminent-contact-item">
-                    <span className="contact-label">Phone:</span>{' '}
+                    {/* Phone icon */}
+                    <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
                     <span className="contact-value">{member.phone || '—'}</span>
                   </p>
+                  {member.address && (
+                    <p className="eminent-contact-item">
+                      {/* Address icon */}
+                      <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span className="contact-value">{member.address}</span>
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -1452,6 +1714,94 @@ export default function MemberPage() {
           </div>
         )}
       </section>
+      {/* ─── Member Detail Modal ─── */}
+      {selectedMember && (
+        <motion.div
+          className="member-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedMember(null)}
+        >
+          <motion.div
+            className="member-modal"
+            initial={{ opacity: 0, scale: 0.88, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.88, y: 30 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button className="member-modal-close" onClick={() => setSelectedMember(null)} aria-label="Close">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+
+            {/* Avatar */}
+            <div className="member-modal-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+
+            {/* Name */}
+            <div className="member-modal-header">
+              {selectedMember.title && (
+                <span className="member-modal-title-badge">{selectedMember.title}</span>
+              )}
+              <h3 className="member-modal-name">{selectedMember.name}</h3>
+            </div>
+
+            <div className="member-modal-divider" />
+
+            {/* Details */}
+            <div className="member-modal-details">
+              <div className="member-modal-row">
+                <svg className="member-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="22,4 12,13 2,4"/>
+                </svg>
+                <div>
+                  <p className="member-modal-label">Email</p>
+                  {selectedMember.email ? (
+                    <a href={`mailto:${selectedMember.email}`} className="member-modal-value link">
+                      {selectedMember.email}
+                    </a>
+                  ) : (
+                    <p className="member-modal-value muted">—</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="member-modal-row">
+                <svg className="member-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                <div>
+                  <p className="member-modal-label">Phone</p>
+                  <p className="member-modal-value">{selectedMember.phone || '—'}</p>
+                </div>
+              </div>
+
+              {selectedMember.address && (
+                <div className="member-modal-row">
+                  <svg className="member-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div>
+                    <p className="member-modal-label">Address</p>
+                    <p className="member-modal-value" style={{ whiteSpace: 'normal', lineHeight: '1.4' }}>{selectedMember.address}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }
