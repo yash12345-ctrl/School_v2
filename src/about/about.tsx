@@ -177,7 +177,7 @@ export default function About() {
             className="about-block-media"
           >
             <div className="about-image-wrapper">
-              <img src="/A3.webp" alt="FACES Aim" />
+              <img src="/k2.png" alt="FACES Aim" />
             </div>
             <div className="about-image-decorator" />
           </motion.div>
@@ -192,38 +192,11 @@ export default function About() {
             animate={activitiesInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="about-block-media"
-            style={{
-              position: 'relative',
-              width: '100%',
-              aspectRatio: '1/1',
-            }}
           >
-            {/* First Image (A4) */}
-            <div className="about-image-wrapper" style={{
-              borderColor: 'rgba(255, 255, 255, 0.15)',
-              position: 'absolute',
-              top: '5%',
-              left: '5%',
-              width: '70%',
-              zIndex: 2,
-            }}>
+            <div className="about-image-wrapper" style={{ borderColor: 'rgba(255, 255, 255, 0.15)' }}>
               <img src="/A4.webp" alt="FACES Activities" />
             </div>
-
-            {/* Second Image (K1) */}
-            <div className="about-image-wrapper" style={{
-              borderColor: 'rgba(255, 255, 255, 0.15)',
-              position: 'absolute',
-              bottom: '5%',
-              right: '5%',
-              width: '70%',
-              zIndex: 3,
-              boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-            }}>
-              <img src="/K1.JPG" alt="FACES Special Event" />
-            </div>
-
-            <div className="about-image-decorator" style={{ borderColor: 'var(--gold)', position: 'absolute', inset: '0px', zIndex: 1 }} />
+            <div className="about-image-decorator" style={{ borderColor: 'var(--gold)' }} />
           </motion.div>
 
           <motion.div

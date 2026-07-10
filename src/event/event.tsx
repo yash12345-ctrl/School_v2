@@ -29,7 +29,7 @@ const EVENTS = [
   { id: 6, title: "Education Summit", date: "", location: "Kolkata", category: "Summit", year: 2023, description: "Supported by FACES.", images: ["/v7.webp", "/e15.webp", "/e16.webp", "/e17.webp"] },
   { id: 7, title: "Book Launch of 'The Far Side'", date: "", location: "Kolkata", category: "Cultural", year: 2023, description: "Supported by FACES.", images: ["/e18.webp", "/e19.webp", "/e20.webp", "/e21.webp"] },
   { id: 8, title: "Gurukul Awards", date: "", location: "Kolkata", category: "Gala", year: 2023, description: "Supported by FACES.", images: ["/e22.webp", "/e23.webp", "/e24.webp", "/e25.webp"] },
-  { id: 9, title: "Amity Half Marathon", date: "", location: "Kolkata", category: "Sports", year: 2022, description: "Supported by FACES.", images: ["/e26.webp", "/e27.webp", "/e28.webp", "/e29.webp"] },
+  { id: 9, title: "Amity Half Marathon", date: "", location: "Kolkata", category: "Sports", year: 2022, description: "Supported by FACES.", images: ["/e28.webp", "/e29.webp"] },
   { id: 10, title: "The Creative Arts", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/v8.webp", "/e30.webp", "/e31.webp", "/e32.webp"] },
   { id: 11, title: "World Suicide Prevention Day Celebration", date: "", location: "Kolkata", category: "Awareness", year: 2022, description: "Supported by FACES.", images: ["/e33.webp", "/e34.webp", "/e35.webp", "/e36.webp"] },
   { id: 12, title: "Zard Sitara", date: "", location: "Kolkata", category: "Cultural", year: 2022, description: "Supported by FACES.", images: ["/e40.webp", "/e41.webp", "/e42.webp", "/e43.webp"] },
@@ -213,7 +213,6 @@ function LegacyStatsSection() {
     { value: '13+', title: 'Major Events', sub: 'Landmark gatherings hosted' },
     { value: '2001', title: 'Established', sub: 'The foundation of our journey' },
     { value: '2K+', title: 'Alumni Engaged', sub: 'Connected members worldwide' },
-    { value: '8', title: 'Categories', sub: 'Diverse areas of focus' },
   ];
 
   return (
@@ -234,8 +233,8 @@ function LegacyStatsSection() {
         </div>
 
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }} className="legacy-footer">
-          <p className="legacy-quote">"Excellence is not a destination. It is the continuous journey that never ends."</p>
-          <div className="legacy-charter">— FOUNDING CHARTER, AETERNUM ACADEMY, 1974</div>
+          <p className="legacy-quote">"Education is the movement from darkness to light."</p>
+          <div className="legacy-charter">— Allan Bloom</div>
         </motion.div>
       </div>
     </section>
@@ -321,7 +320,7 @@ export default function EventPage() {
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="gallery-section-header">
               <div className="gallery-section-label"><span className="gallery-label-dot" />All Events</div>
-              <h2 className="gallery-section-title">13 Landmark <span className="italic" style={{ color: 'var(--gold)' }}>Moments</span></h2>
+              <h2 className="gallery-section-title">Landmark <span className="italic" style={{ color: 'var(--gold)' }}>Moments</span></h2>
               <p className="gallery-section-sub">Click any card to explore the full story — photos, highlights & details.</p>
             </motion.div>
 

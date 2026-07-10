@@ -14,11 +14,10 @@ export default function DonatePage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const bankDetails = {
-    bankName: 'Indian Overseas Bank',
-    branch: 'Indian exchange place',
-    accountNumber: '22690200000422',
-    ifscCode: 'IOBA0000015',
+  const contactDetails = {
+    phone: '+91-98310 19298',
+    email: 'imrzak@gmail.com',
+    address: '93, Phears Lane, Bowbazar, Kolkata 700 012',
   };
 
   const handleCopy = (text: string, fieldName: string) => {
@@ -134,36 +133,46 @@ export default function DonatePage() {
                   </div>
 
                   <div className="card-number-group">
-                    <span className="card-label">ACCOUNT NUMBER</span>
+                    <span className="card-label">EMAIL</span>
                     <div className="card-number-flex">
-                      <span className="card-value-large">{bankDetails.accountNumber}</span>
+                      <span className="card-value-large" style={{ fontSize: '1.15rem', fontFamily: 'var(--font-body)', letterSpacing: 'normal' }}>{contactDetails.email}</span>
                       <button
                         type="button"
                         className="icon-copy-btn"
-                        onClick={() => handleCopy(bankDetails.accountNumber, 'accountNumber')}
-                        aria-label="Copy Account Number"
+                        onClick={() => handleCopy(contactDetails.email, 'email')}
+                        aria-label="Copy Email"
                       >
-                        {copiedField === 'accountNumber' ? <CheckCircle2 size={16} className="success-copy-icon" /> : <Copy size={16} />}
+                        {copiedField === 'email' ? <CheckCircle2 size={16} className="success-copy-icon" /> : <Copy size={16} />}
                       </button>
                     </div>
                   </div>
 
-                  <div className="card-bottom-row">
+                  <div className="card-bottom-row" style={{ flexDirection: 'column', gap: '1rem' }}>
                     <div className="card-field">
-                      <span className="card-label">BANK NAME</span>
-                      <span className="card-value-small">{bankDetails.bankName}</span>
-                    </div>
-                    <div className="card-field">
-                      <span className="card-label">IFSC CODE</span>
+                      <span className="card-label">PHONE</span>
                       <div className="card-number-flex">
-                        <span className="card-value-small">{bankDetails.ifscCode}</span>
+                        <span className="card-value-small">{contactDetails.phone}</span>
                         <button
                           type="button"
                           className="icon-copy-btn"
-                          onClick={() => handleCopy(bankDetails.ifscCode, 'ifscCode')}
-                          aria-label="Copy IFSC Code"
+                          onClick={() => handleCopy(contactDetails.phone, 'phone')}
+                          aria-label="Copy Phone Number"
                         >
-                          {copiedField === 'ifscCode' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
+                          {copiedField === 'phone' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-field">
+                      <span className="card-label">ADDRESS</span>
+                      <div className="card-number-flex">
+                        <span className="card-value-small" style={{ textTransform: 'none', fontSize: '0.8rem', lineHeight: '1.4', paddingRight: '1rem' }}>{contactDetails.address}</span>
+                        <button
+                          type="button"
+                          className="icon-copy-btn"
+                          onClick={() => handleCopy(contactDetails.address, 'address')}
+                          aria-label="Copy Address"
+                        >
+                          {copiedField === 'address' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
                         </button>
                       </div>
                     </div>
@@ -171,7 +180,7 @@ export default function DonatePage() {
 
                 </div>
 
-                <p className="bank-card-note">Instant domestic transfers directly to our NGO account.</p>
+                <p className="bank-card-note">Feel free to reach out to us for any queries or support.</p>
 
                 {/* Toast Notification */}
                 <AnimatePresence>

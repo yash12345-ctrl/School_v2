@@ -34,12 +34,6 @@ const alumni = [
   },
 ];
 
-const tagColors: Record<string, string> = {
-  Education: '#1a3a6b',
-  Literature: '#6b1a2a',
-  Community: '#1a5a3a',
-};
-
 export default function AlumniSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-10%' });

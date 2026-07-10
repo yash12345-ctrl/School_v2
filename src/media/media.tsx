@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValue } from 'framer-motion';
-import { Play, Camera, FileText, Image as ImageIcon, Heart, X, ChevronLeft, ChevronRight, Phone, Mail, MapPin } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Play, Camera, FileText, Image as ImageIcon, X, ChevronLeft, ChevronRight, Phone, Mail, MapPin } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './media.css';
@@ -30,138 +30,10 @@ const getIconForType = (type: string) => {
   }
 };
 
-interface SwipeCardProps {
-  item: any;
-  index: number;
-  cards: any[];
-  onSwipe: (direction: 'left' | 'right', item: any) => void;
-  onExpand: (item: any) => void;
-}
-
-const SwipeCard = ({ item, index, cards, onSwipe, onExpand }: SwipeCardProps) => {
-  const x = useMotionValue(0);
-  const [exitX, setExitX] = useState(0);
-  const rotate = useTransform(x, [-200, 200], [-15, 15]);
-  const isFront = index === cards.length - 1;
-  const positionDiff = cards.length - 1 - index;
-
-  const handleDragEnd = (_: any, info: any) => {
-    const threshold = 100;
-    const swipeRight = info.offset.x > threshold || info.velocity.x > 500;
-    const swipeLeft = info.offset.x < -threshold || info.velocity.x < -500;
-
-    if (swipeRight) {
-      setExitX(300);
-      onSwipe('right', item);
-    } else if (swipeLeft) {
-      setExitX(-300);
-      onSwipe('left', item);
-    }
-  };
-
-  return (
-    <motion.div
-      className="media-swipe-card"
-      style={{
-        gridRow: 1,
-        gridColumn: 1,
-        x: isFront ? x : 0,
-        rotate: isFront ? rotate : 0,
-      }}
-      animate={{
-        scale: isFront ? 1 : Math.max(0.8, 1 - positionDiff * 0.05),
-        y: isFront ? 0 : positionDiff * 25,
-        zIndex: index,
-        opacity: positionDiff > 3 ? 0 : 1,
-      }}
-      transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 25 }}
-      drag={isFront ? "x" : false}
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.7}
-      onDragEnd={handleDragEnd}
-      onTap={isFront ? () => onExpand(item) : undefined}
-      exit={{ x: exitX, opacity: 0, transition: { duration: 0.3 } }}
-      whileTap={isFront ? { cursor: "grabbing", scale: 0.98 } : {}}
-    >
-      <div className="media-card-img-wrap">
-        <img src={item.image} alt={item.title} className="media-card-img" draggable={false} />
-        <div className="media-card-overlay"></div>
-        <div className="media-card-type">
-          {getIconForType(item.type)}
-          {item.type}
-        </div>
-      </div>
-      <div className="media-card-content">
-        <div className="media-card-meta">
-          <span className="media-card-date">{item.date}</span>
-          <span className="media-card-info">
-            {item.duration || item.readTime || item.count}
-          </span>
-        </div>
-        <h3 className="media-card-title">{item.title}</h3>
-        <div className="media-swipe-hint">
-          Swipe to explore
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 export default function Media() {
 
-  const [cards, setCards] = useState([...MEDIA_ITEMS].reverse());
-  const [likedCards, setLikedCards] = useState<any[]>([]);
   const [expandedItem, setExpandedItem] = useState<any | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-
-  const handleSwipe = (direction: 'left' | 'right', item: any) => {
-    if (direction === 'right') {
-      setLikedCards(prev => [item, ...prev]);
-    }
-
-    setCards(prev => {
-      const newCards = prev.filter(c => c.id !== item.id);
-      if (newCards.length === 0) {
-        setTimeout(() => {
-          setCards([...MEDIA_ITEMS].reverse());
-          setLikedCards([]);
-        }, 800);
-      }
-      return newCards;
-    });
-  };
-
-  const manualSwipe = (direction: 'left' | 'right') => {
-    if (cards.length === 0) return;
-    const topCard = cards[cards.length - 1];
-    // To trigger exit animation correctly when using manual buttons, 
-    // the SwipeCard itself needs to know to exit. 
-    // But since we can't easily trigger SwipeCard's state from parent,
-    // we just use handleSwipe. It will instantly remove it (no exit anim from parent), 
-    // but the user's focus is on the sidebar updating.
-    handleSwipe(direction, topCard);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (cards.length === 0) return;
-
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        const swiperSection = document.querySelector('.media-swipe-section');
-        if (swiperSection) {
-          const rect = swiperSection.getBoundingClientRect();
-          const inView = rect.top < window.innerHeight && rect.bottom > 0;
-          if (inView) {
-            e.preventDefault();
-            if (e.key === 'ArrowRight') manualSwipe('right');
-            else if (e.key === 'ArrowLeft') manualSwipe('left');
-          }
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [cards]);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -173,12 +45,6 @@ export default function Media() {
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   const handleCloseModal = () => {
-    if (expandedItem) {
-      setCards(prevCards => {
-        const filtered = prevCards.filter(c => c.id !== expandedItem.id);
-        return [...filtered, expandedItem];
-      });
-    }
     setExpandedItem(null);
   };
 
@@ -288,7 +154,7 @@ export default function Media() {
 
 
 
-        {/* ── Media Swipe Section ── */}
+        {/* ── Media Grid Section ── */}
         <section className="media-swipe-section">
           <div className="container-xl">
             <div className="media-grid-header luxurious-header">
@@ -297,134 +163,38 @@ export default function Media() {
               <p className="media-swipe-desc">Trusted Stories. Real Impact.</p>
               <div className="luxurious-divider"></div>
             </div>
-          </div>
 
-          <div className="container-xl media-swipe-layout">
-            {/* Center Swipe Area */}
-            <div className="swipe-center-area">
-              <div className="swipe-container-wrapper">
-                <div className="swipe-container">
-                  <AnimatePresence mode="popLayout">
-                    {cards.map((item, index) => (
-                      <SwipeCard
-                        key={item.id}
-                        item={item}
-                        index={index}
-                        cards={cards}
-                        onSwipe={handleSwipe}
-                        onExpand={setExpandedItem}
-                      />
-                    ))}
-                  </AnimatePresence>
-
-                  {cards.length === 0 && (
-                    <motion.div
-                      className="media-swipe-empty"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <h3>Looping...</h3>
-                      <p>Fetching the deck again.</p>
-                    </motion.div>
-                  )}
-                </div>
-
-              </div>
+            <div className="media-tiles-grid">
+              {MEDIA_ITEMS.map((item) => (
+                <motion.div
+                  key={item.id}
+                  className="media-tile-card"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  onClick={() => setExpandedItem(item)}
+                >
+                  <div className="media-tile-img-wrap">
+                    <img src={item.image} alt={item.title} className="media-tile-img" loading="lazy" />
+                    <div className="media-tile-overlay"></div>
+                    <div className="media-tile-type">
+                      {getIconForType(item.type)}
+                      {item.type}
+                    </div>
+                  </div>
+                  <div className="media-tile-content">
+                    <div className="media-tile-meta">
+                      <span className="media-tile-date">{item.date}</span>
+                      <span className="media-tile-info">{(item as any).readTime || (item as any).duration || (item as any).count}</span>
+                    </div>
+                    <h3 className="media-tile-title">{item.title}</h3>
+                    <div className="media-tile-action">
+                      <span>Read Story</span>
+                      <ChevronRight size={16} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-
-            {/* Premium Glassmorphic Data Rail */}
-            <div className="layout-transfer-wire">
-              {/* Left Connection Mechanism */}
-              <div className="rail-node left-node">
-                <div className="node-core"></div>
-                <div className="node-ring"></div>
-              </div>
-
-              {/* The Main Rail */}
-              <div className="data-rail-container">
-                <div className="rail-glass-backdrop"></div>
-
-                {/* The static energy line */}
-                <div className="rail-baseline"></div>
-
-                {/* The moving energy pulse */}
-                <div className="rail-energy-pulse">
-                  <div className="pulse-tail"></div>
-                  <div className="pulse-head"></div>
-                </div>
-
-                {/* Elegant particles along the rail */}
-                <div className="rail-particle rp-1"></div>
-                <div className="rail-particle rp-2"></div>
-                <div className="rail-particle rp-3"></div>
-              </div>
-
-              {/* Right Connection Mechanism */}
-              <div className="rail-node right-node">
-                <div className="node-core"></div>
-                <div className="node-ring"></div>
-                <div className="node-ripple"></div>
-              </div>
-            </div>
-
-            {/* Right Sidebar (Saved) */}
-            <div className="swipe-sidebar right-sidebar">
-              <div className="sidebar-header">
-                <h3>Saved Collection</h3>
-                {likedCards.length > 0 && <span className="sidebar-count">{likedCards.length}</span>}
-              </div>
-              <div className="sidebar-list">
-                <AnimatePresence>
-                  {likedCards.length === 0 && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="sidebar-empty-state">
-                      <div className="empty-icon-wrapper">
-                        <Heart size={36} strokeWidth={1.5} className="empty-icon-pulse" />
-                        <div className="empty-icon-glow"></div>
-                      </div>
-                      <h4>Your Vault is Empty</h4>
-                      <p>Swipe right or tap the heart to archive premium stories to your collection.</p>
-
-                      <div className="empty-skeletons">
-                        <div className="transfer-wire">
-                          <div className="glowing-orb"></div>
-                        </div>
-                        <div className="skeleton-card"></div>
-                        <div className="skeleton-card skeleton-delay"></div>
-                      </div>
-                    </motion.div>
-                  )}
-                  {likedCards.map(c => (
-                    <motion.div
-                      key={c.id}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="sidebar-card"
-                      onClick={() => setExpandedItem(c)}
-                    >
-                      <div className="sidebar-card-img-container">
-                        <img src={c.image} alt={c.title} />
-                        <div className="sidebar-card-overlay">
-                          {getIconForType(c.type)}
-                        </div>
-                      </div>
-                      <div className="sidebar-card-content">
-                        <div className="sidebar-card-badges">
-                          <span className="sidebar-card-type">{c.type}</span>
-                        </div>
-                        <h4>{c.title}</h4>
-                        <div className="sidebar-card-meta">
-                          <span>{c.date}</span>
-                          <span className="dot">•</span>
-                          <span>{c.duration || c.readTime || c.count}</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-
           </div>
         </section>
 
@@ -552,16 +322,6 @@ export default function Media() {
                       }}
                     >
                       Next Story <ChevronRight size={20} />
-                    </button>
-                    <button
-                      className="modal-btn secondary"
-                      onClick={() => {
-                        if (!likedCards.find(c => c.id === expandedItem.id)) {
-                          setLikedCards(prev => [...prev, expandedItem]);
-                        }
-                      }}
-                    >
-                      <Heart size={18} fill={likedCards.find(c => c.id === expandedItem?.id) ? "var(--gold)" : "none"} color={likedCards.find(c => c.id === expandedItem?.id) ? "var(--gold)" : "currentColor"} /> Save
                     </button>
                   </div>
                 </div>

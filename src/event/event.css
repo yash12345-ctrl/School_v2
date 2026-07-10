@@ -762,7 +762,7 @@
 
 .legacy-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border-top: 1px solid rgba(201, 168, 76, 0.2);
   border-bottom: 1px solid rgba(201, 168, 76, 0.2);
@@ -1478,7 +1478,7 @@
 .modal-title {
   font-family: var(--font-display);
   font-size: 1.45rem;
-  color: #fff;
+  color: #fff !important;
   line-height: 1.25;
   margin-bottom: 0.9rem;
 }
