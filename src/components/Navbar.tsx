@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
-  { label: 'Member', href: '/member' },
   { label: 'Events', href: '/event' },
   { label: 'Media', href: '/media' },
   { label: 'Donate', href: '/donate' },
@@ -142,38 +141,22 @@ export default function Navbar() {
                 }}>◆</span>
               </div>
 
-              {/* Bottom row: label + hairline + est */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {/* Bottom row: full org name only */}
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: '0.52rem',
-                  letterSpacing: '0.2em',
+                  fontSize: '0.42rem',
+                  letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   color: 'rgba(201,168,76,0.92)',
-                  lineHeight: 1,
+                  lineHeight: 1.3,
+                  maxWidth: '210px',
+                  whiteSpace: 'normal',
+                  wordBreak: 'break-word',
                 }}>
-                  Alumni Association
+                  Friends of Alumni/Ae of Colleges Educational Institutes &amp; Schools
                 </span>
-                <div style={{ width: '1px', height: '7px', background: 'rgba(255,255,255,0.35)' }} />
-                <span style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 400,
-                  fontSize: '0.52rem',
-                  letterSpacing: '0.12em',
-                  color: 'rgba(255,255,255,0.55)',
-                  lineHeight: 1,
-                }}>
-                  Est. 2006
-                </span>
-                {/* Live pulse dot */}
-                <div style={{
-                  width: '4px', height: '4px', borderRadius: '50%',
-                  background: '#34c759',
-                  boxShadow: '0 0 6px rgba(52,199,89,0.9)',
-                  animation: 'navDotPulse 2s ease-in-out infinite',
-                  flexShrink: 0,
-                }} />
               </div>
             </div>
           </div>

@@ -193,28 +193,11 @@ export default function HeroSection() {
             className="hero-line-1"
             style={{
               position: 'relative',
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              padding: '1.8rem 3.2rem',
-              borderRadius: '20px',
               opacity: 0,
               marginBottom: '1.5rem',
               display: 'inline-block',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              overflow: 'hidden',
             }}
           >
-            {/* Subtle inner shine */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.25) 25%, transparent 30%)',
-              backgroundSize: '200% 200%',
-              animation: 'heroShimmer 6s infinite',
-              pointerEvents: 'none',
-              mixBlendMode: 'overlay',
-            }} />
             <h1
               style={{
                 position: 'relative',

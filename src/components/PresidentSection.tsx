@@ -92,7 +92,7 @@ export default function PresidentSection() {
             }}>
               <img
                 src="/v5.webp"
-                alt="Imran Zaidi — President, FACES"
+                alt="Imran Zaki — President, FACES"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
               {/* Dark gradient overlay at bottom */}
@@ -109,7 +109,7 @@ export default function PresidentSection() {
                   color: '#ffffff', margin: 0,
                   letterSpacing: '-0.01em',
                 }}>
-                  Imran Zaidi
+                  Imran Zaki
                 </p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
@@ -196,7 +196,7 @@ export default function PresidentSection() {
                 color: '#ffffff',
                 letterSpacing: '-0.02em',
               }}>
-                Imran Zaidi
+                Imran Zaki
               </span>
               <span style={{
                 fontFamily: "'Inter', sans-serif",

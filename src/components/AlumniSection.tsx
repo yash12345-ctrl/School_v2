@@ -53,23 +53,8 @@ export default function AlumniSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ marginBottom: '5rem', position: 'relative' }}
+          style={{ marginBottom: '5rem', position: 'relative', textAlign: 'center' }}
         >
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '1.5rem',
-          }}>
-            <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>✦</span>
-            <span style={{
-              color: 'var(--navy)',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase'
-            }}>Curated Experiences</span>
-          </div>
 
           <h2 className="text-display-lg" style={{
             color: 'var(--navy)',
@@ -78,7 +63,7 @@ export default function AlumniSection() {
             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
-            margin: 0
+            margin: '0 auto'
           }}>
             Featured
             <br />
@@ -97,7 +82,9 @@ export default function AlumniSection() {
             background: 'var(--gold)',
             marginTop: '2rem',
             marginBottom: '2rem',
-            opacity: 0.6
+            opacity: 0.6,
+            marginLeft: 'auto',
+            marginRight: 'auto'
           }} />
 
           <p style={{
@@ -106,7 +93,7 @@ export default function AlumniSection() {
             lineHeight: 1.8,
             fontSize: '1.05rem',
             fontWeight: 400,
-            margin: 0
+            margin: '0 auto'
           }}>
             Discover our landmark gatherings that unite the alumni network across
             schools and colleges of Kolkata, driving social and cultural impact.
@@ -157,22 +144,7 @@ export default function AlumniSection() {
                   inset: 0,
                   background: 'linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.1) 50%, transparent 100%)',
                 }} />
-                {/* Tag */}
-                <div style={{
-                  position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
-                  background: tagColors[person.tag] || 'var(--royal)',
-                  color: 'white',
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  padding: '0.3rem 0.7rem',
-                  borderRadius: '4px',
-                }}>
-                  {person.tag}
-                </div>
+
                 {/* Class year */}
                 <div style={{
                   position: 'absolute',
@@ -221,15 +193,7 @@ export default function AlumniSection() {
                     {person.company}
                   </div>
                 )}
-                <p style={{
-                  fontSize: '0.88rem',
-                  color: '#555',
-                  lineHeight: 1.7,
-                  borderTop: person.name ? '1px solid var(--gray-light)' : 'none',
-                  paddingTop: person.name ? '1rem' : '0',
-                }}>
-                  {person.achievement}
-                </p>
+
               </div>
             </motion.div>
           ))}
