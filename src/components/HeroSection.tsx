@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -37,9 +37,6 @@ export default function HeroSection() {
       opacity: 1, y: 0, filter: 'blur(0px)',
       duration: 0.9, ease: 'power4.out',
     }, '-=0.65');
-    tl.fromTo('.hero-line-3', { opacity: 0, y: 30 }, {
-      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-    }, '-=0.6');
     tl.fromTo('.hero-sub-copy', { opacity: 0, y: 20 }, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     }, '-=0.5');
@@ -189,7 +186,7 @@ export default function HeroSection() {
           </div>
 
           {/* Big headline */}
-          <div 
+          <div
             className="hero-line-1"
             style={{
               position: 'relative',
@@ -226,30 +223,14 @@ export default function HeroSection() {
               fontSize: 'clamp(1rem, 2vw, 1.65rem)',
               letterSpacing: '-0.01em',
               color: '#ffffff',
-              opacity: 0, marginBottom: '0.4rem',
+              opacity: 0, marginBottom: '1.2rem',
               lineHeight: 1.35,
               textShadow: '0 2px 8px rgba(0,0,0,0.4)',
             }}
           >
-            Alumni of multi-disciplinary schools
+            Friends of Alumni/Ae of Colleges Educational Institutes
             <br />
-            <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>&amp; colleges of Kolkata</span>
-          </p>
-
-          <p
-            className="hero-line-3"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 'clamp(0.78rem, 1.3vw, 0.95rem)',
-              color: 'rgba(255,255,255,0.95)',
-              opacity: 0, marginBottom: '2.4rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
-            }}
-          >
-            Est. 2006 · Non-Profit · Formally Constituted 2007
+            <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>&amp; Schools</span>
           </p>
 
           {/* Thin divider */}

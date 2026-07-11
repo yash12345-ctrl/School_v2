@@ -7,7 +7,7 @@ const alumni = [
     name: 'Book Launch: "Magis Mantra"',
     role: 'Celebrating The Journey',
     company: 'Father Felix Raj, SJ',
-    year: 'Honoured 2024',
+
     achievement: "A landmark event celebrating the inspiring journey of the Vice-Chancellor, St. Xavier's University.",
     image: '/v2.webp',
     tag: 'Education',
@@ -17,7 +17,7 @@ const alumni = [
     name: 'Blanket Distribution',
     role: 'Community Initiative',
     company: 'FACES Alumni Association',
-    year: 'Winter 2024',
+
     achievement: 'A collaborative initiative by FACES, in partnership with the Abdus Shokur Foundation and the Anti-Hunger Squad Foundation.',
     image: '/e2.webp',
     tag: 'Community',
@@ -27,7 +27,7 @@ const alumni = [
     name: 'Communal Harmony',
     role: 'Documentary Film',
     company: 'By Zara Bhardwaj',
-    year: 'Project 2024',
+    year: '',
     achievement: 'A powerful documentary film exploring communal harmony, proudly supported by FACES.',
     image: '/e7.webp',
     tag: 'Film',
