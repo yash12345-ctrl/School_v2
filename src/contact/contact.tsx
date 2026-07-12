@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Copy, CheckCircle2, ChevronDown, ChevronDown as ScrollArrow, Globe, BookOpen } from 'lucide-react';
-import './donate.css';
+import { Heart, Copy, CheckCircle2, ChevronDown, ChevronDown as ScrollArrow, Globe, BookOpen, Phone, Mail, MapPin } from 'lucide-react';
+import './contact.css';
 
 const FAQS = [
   { q: 'Are donations tax-exempt?', a: 'Yes! All donations made to FACES Alumni Association are eligible for tax deduction under Section 80G of the Income Tax Act. A receipt with the 80G registration details will be automatically emailed to you.' },
@@ -10,7 +10,7 @@ const FAQS = [
   { q: 'Do you accept international donations?', a: 'Yes. You can switch the currency selector to USD to contribute via international credit/debit cards or wire transfers.' }
 ];
 
-export default function DonatePage() {
+export default function ContactPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
@@ -40,50 +40,44 @@ export default function DonatePage() {
   };
 
   return (
-    <div className="donate-page">
+    <div className="contact-page">
       {/* ─── Page Block 1: Hero Header ─── */}
-      <header className="donate-hero donate-page-block">
-        <div className="donate-hero-bg-wrapper">
-          <img src="/n22.webp" alt="Alumni campus" className="donate-hero-bg" />
-          <div className="donate-hero-overlay"></div>
+      <header className="contact-hero contact-page-block">
+        <div className="contact-hero-bg-wrapper">
+          <img src="/n22.webp" alt="Alumni campus" className="contact-hero-bg" />
+          <div className="contact-hero-overlay"></div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="donate-hero-content"
+          className="contact-hero-content"
         >
-          <div className="donate-badge animate-float">
+          <div className="contact-badge animate-float">
             <Heart size={14} className="heart-icon" />
             <span>Empower the Future</span>
           </div>
-          <h1 className="donate-hero-title">Shaping Legacies Together</h1>
-          <p className="donate-hero-subtitle">
+          <h1 className="contact-hero-title">Shaping Legacies Together</h1>
+          <p className="contact-hero-subtitle">
             Your generous contributions fund student scholarships, infrastructure modernization, and social impact initiatives.
           </p>
         </motion.div>
 
         {/* Scroll Indicator */}
-        <div className="scroll-indicator-wrap" onClick={() => scrollToNext('.donate-form-page')}>
+        <div className="scroll-indicator-wrap" onClick={() => scrollToNext('.contact-form-page')}>
           <span className="scroll-text">Scroll to Details</span>
           <ScrollArrow className="scroll-arrow-icon" size={16} />
         </div>
       </header>
 
       {/* ─── Page Block 2: Bank Details & Sponsor Info ─── */}
-      <section className="donate-page-block donate-form-page">
+      <section className="contact-page-block contact-form-page">
         <div className="container-lg">
-          <div className="donate-grid">
+          <div className="contact-grid">
 
             {/* Left Column: About FACES Organization Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="donate-info-panel"
-            >
+            
               <div>
                 <h2 className="panel-title">FACES</h2>
                 <div className="gold-divider" />
@@ -107,109 +101,79 @@ export default function DonatePage() {
                   </div>
 
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Premium Bank Details Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="donate-bank-details-panel"
-            >
-              <div className="premium-bank-card-container">
-                <div className="physical-bank-card">
-                  {/* Holographic glare overlay */}
-                  <div className="card-glare"></div>
-
-                  <div className="card-top-row">
-                    <div className="card-chip">
-                      <div className="chip-line"></div>
-                      <div className="chip-line"></div>
-                      <div className="chip-line"></div>
-                    </div>
-                    <img src="/v1.webp" alt="FACES Logo" className="card-logo-img" />
-                  </div>
-
-                  <div className="card-number-group">
-                    <span className="card-label">EMAIL</span>
-                    <div className="card-number-flex">
-                      <span className="card-value-large" style={{ fontSize: '1.15rem', fontFamily: 'var(--font-body)', letterSpacing: 'normal' }}>{contactDetails.email}</span>
-                      <button
-                        type="button"
-                        className="icon-copy-btn"
-                        onClick={() => handleCopy(contactDetails.email, 'email')}
-                        aria-label="Copy Email"
-                      >
-                        {copiedField === 'email' ? <CheckCircle2 size={16} className="success-copy-icon" /> : <Copy size={16} />}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="card-bottom-row" style={{ flexDirection: 'column', gap: '1rem' }}>
-                    <div className="card-field">
-                      <span className="card-label">PHONE</span>
-                      <div className="card-number-flex">
-                        <span className="card-value-small">{contactDetails.phone}</span>
-                        <button
-                          type="button"
-                          className="icon-copy-btn"
-                          onClick={() => handleCopy(contactDetails.phone, 'phone')}
-                          aria-label="Copy Phone Number"
-                        >
-                          {copiedField === 'phone' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
-                        </button>
-                      </div>
-                    </div>
-                    <div className="card-field">
-                      <span className="card-label">ADDRESS</span>
-                      <div className="card-number-flex">
-                        <span className="card-value-small" style={{ textTransform: 'none', fontSize: '0.8rem', lineHeight: '1.4', paddingRight: '1rem' }}>{contactDetails.address}</span>
-                        <button
-                          type="button"
-                          className="icon-copy-btn"
-                          onClick={() => handleCopy(contactDetails.address, 'address')}
-                          aria-label="Copy Address"
-                        >
-                          {copiedField === 'address' ? <CheckCircle2 size={14} className="success-copy-icon" /> : <Copy size={14} />}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <p className="bank-card-note">Feel free to reach out to us for any queries or support.</p>
-
-                {/* Toast Notification */}
-                <AnimatePresence>
-                  {copiedField && (
-                    <motion.div
-                      className="copy-toast"
-                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                    >
-                      Copied to clipboard!
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-
-          </div>
+              </div>    
+            </div>
+        
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator-wrap dark-text" onClick={() => scrollToNext('.donate-faq-page')}>
+        
+      {/* ── Press Contact Section ── */}
+        <section className="media-contact-section">
+          
+            <motion.div
+              className="media-contact-card"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="media-contact-bg"></div>
+              <div className="media-contact-grid">
+
+                {/* Left Side Content */}
+                <div className="media-contact-left">
+                  <h2>Connect With Us!</h2>
+                  <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
+
+                  <div className="contact-details-grid">
+                    <div className="contact-item">
+                      <div className="contact-icon-wrapper">
+                        <Phone size={20} />
+                      </div>
+                      <span>+91-98310 19298</span>
+                    </div>
+                    <div className="contact-item">
+                      <div className="contact-icon-wrapper">
+                        <Mail size={20} />
+                      </div>
+                      <span>imrzak@gmail.com</span>
+                    </div>
+                    <div className="contact-item">
+                      <div className="contact-icon-wrapper">
+                        <MapPin size={20} />
+                      </div>
+                      <span>93, Phears Lane, Bowbazar, Kolkata 700 012</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side Images */}
+                <div className="media-contact-images">
+                  <div className="contact-img-wrapper img-1">
+                    <img src="/s1.webp" alt="Community Event" />
+                  </div>
+                  <div className="contact-img-wrapper img-2">
+                    <img src="/s2.webp" alt="Charity Drive" />
+                  </div>
+                  <div className="contact-img-wrapper img-3">
+                    <img src="/s3.webp" alt="Donation Camp" />
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          
+        </section>
+
+
+          {/* Scroll Indicator */}
+        <div className="scroll-indicator-wrap dark-text" onClick={() => scrollToNext('.contact-faq-page')}>
           <span className="scroll-text">FAQs</span>
           <ScrollArrow className="scroll-arrow-icon" size={16} />
         </div>
       </section>
-
       {/* ─── Page Block 3: FAQ Accordion ─── */}
-      <section className="donate-page-block donate-faq-page">
+      <section className="contact-page-block contact-faq-page">
         <div className="container-lg">
           <h2 className="section-title text-center">Frequently Asked Questions</h2>
           <div className="gold-divider-center" />

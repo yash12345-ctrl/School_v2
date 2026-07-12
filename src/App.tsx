@@ -6,14 +6,12 @@ import HeroSection from './components/HeroSection';
 import AlumniSection from './components/AlumniSection';
 import PresidentSection from './components/PresidentSection';
 import ProgramsSection from './components/ProgramsSection';
-
-
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import EventPage from './event/event';
 import About from './about/about';
 import MediaPage from './media/media';
-import DonatePage from './donate/donate';
+import ContactPage from './contact/contact';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(() => {
@@ -50,11 +48,11 @@ export default function App() {
     return <MediaPage />;
   }
 
-  if (currentPath === '/donate') {
+  if (currentPath === '/contact') {
     return (
       <>
         <Navbar />
-        <DonatePage />
+        <ContactPage />
         <Footer />
       </>
     );

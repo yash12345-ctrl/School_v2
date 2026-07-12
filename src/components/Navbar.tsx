@@ -6,7 +6,7 @@ const navItems = [
   { label: 'About Us', href: '/about' },
   { label: 'Events', href: '/event' },
   { label: 'Media', href: '/media' },
-  { label: 'Donate', href: '/donate' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
