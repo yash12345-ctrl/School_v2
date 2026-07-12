@@ -232,45 +232,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ─── Block 6: Media Coverage ──────────────────────────────── */}
-      <section ref={mediaRef} className="about-block">
-        <div className="about-block-container" style={{ gridTemplateColumns: '1fr' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={mediaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="about-block-content"
-            style={{ alignItems: 'center', textAlign: 'center' }}
-          >
-            <span className="about-block-subtitle">✦ In The News</span>
-            <h2 className="about-block-title">Media Coverage</h2>
-            <div className="gold-divider" />
-            <p className="about-block-desc" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              Highlights and features of our initiatives across various media platforms. Click any image to enlarge.
-            </p>
-
-            <div className="media-grid">
-              {['/A8 (1).webp', '/A8 (2).webp', '/A8 (3).webp', '/A8 (4).webp'].map((src, index) => {
-                const rotate = [-6, 4, -3, 5][index % 4];
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8, rotate: rotate - 15 }}
-                    animate={mediaInView ? { opacity: 1, scale: 1, rotate: rotate } : {}}
-                    whileHover={{ scale: 1.15, rotate: 0, zIndex: 10 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                    className="media-item"
-                    onClick={() => setSelectedImage(src)}
-                  >
-                    <img src={src} alt={`Media Coverage ${index + 1}`} />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
+      
       {/* ─── Lightbox Modal ─────────────────────────────────────── */}
       <AnimatePresence>
         {selectedImage && (
