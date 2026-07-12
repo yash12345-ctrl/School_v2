@@ -9,7 +9,6 @@ export default function About() {
   const missionRef = useRef<HTMLDivElement>(null);
   const aimRef = useRef<HTMLDivElement>(null);
   const activitiesRef = useRef<HTMLDivElement>(null);
-  const mediaRef = useRef<HTMLDivElement>(null);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -18,7 +17,6 @@ export default function About() {
   const missionInView = useInView(missionRef, { once: true, margin: '-10%' });
   const aimInView = useInView(aimRef, { once: true, margin: '-10%' });
   const activitiesInView = useInView(activitiesRef, { once: true, margin: '-10%' });
-  const mediaInView = useInView(mediaRef, { once: true, margin: '-10%' });
 
   return (
     <div id="about" className="about-page">

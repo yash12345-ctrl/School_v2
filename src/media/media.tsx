@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Play, Camera, FileText, Image as ImageIcon, X, ChevronLeft, ChevronRight, Phone, Mail, MapPin } from 'lucide-react';
+import { Play, Camera, FileText, Image as ImageIcon, X, ChevronRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './media.css';
@@ -172,6 +172,7 @@ export default function Media() {
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   onClick={() => setExpandedItem(item)}
+                  onMouseEnter={() => setExpandedItem(item)}
                 >
                   <div className="media-tile-img-wrap">
                     <img src={item.image} alt={item.title} className="media-tile-img" loading="lazy" />
@@ -198,7 +199,48 @@ export default function Media() {
           </div>
         </section>
 
-        
+        <AnimatePresence>
+          {expandedItem && (
+            <div className="media-expanded-overlay">
+              <motion.div
+                className="media-expanded-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleCloseModal}
+              />
+              <motion.div
+                className="media-expanded-modal"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              >
+                <button className="modal-close-btn" onClick={handleCloseModal}>
+                  <X size={24} />
+                </button>
+                <div className="modal-visual">
+                  <img src={expandedItem.image} alt={expandedItem.title} />
+                  <div className="modal-visual-gradient" />
+                </div>
+                <div className="modal-details">
+                  <div className="modal-meta-row">
+                    <span className="modal-meta-tag">{expandedItem.category}</span>
+                    <span className="modal-meta-date">{expandedItem.date}</span>
+                  </div>
+                  <h3 className="modal-title">{expandedItem.modalHeading || expandedItem.title}</h3>
+                  <div className="modal-description">
+                    <p>{expandedItem.modalContent}</p>
+                  </div>
+                  <div className="modal-action-row">
+                    <button className="modal-btn primary">Read Full Article</button>
+                    <button className="modal-btn secondary">Share</button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </main>
 
       <Footer />
