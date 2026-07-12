@@ -1,13 +1,13 @@
-/* Donate Page Styles */
+/* contact Page Styles */
 
-.donate-page {
+.contact-page {
   background-color: var(--off-white);
   color: var(--navy);
   overflow-x: hidden;
 }
 
 /* ─── Full-Screen Page Blocks ─────────────────────────── */
-.donate-page-block {
+.contact-page-block {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,19 +20,19 @@
 }
 
 /* ─── Hero Block (Block 1) ────────────────────────────── */
-.donate-hero {
+.contact-hero {
   text-align: center;
   overflow: hidden;
   background: var(--navy);
 }
 
-.donate-hero-bg-wrapper {
+.contact-hero-bg-wrapper {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.donate-hero-bg {
+.contact-hero-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -40,7 +40,7 @@
   filter: brightness(0.85) contrast(1.1);
 }
 
-.donate-hero-overlay {
+.contact-hero-overlay {
   position: absolute;
   inset: 0;
   background: 
@@ -48,7 +48,7 @@
     radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.08) 0%, rgba(10, 22, 40, 0.5) 100%);
 }
 
-.donate-hero-content {
+.contact-hero-content {
   max-width: 700px;
   position: relative;
   z-index: 1;
@@ -61,7 +61,7 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.donate-badge {
+.contact-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -79,7 +79,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.donate-badge .heart-icon {
+.contact-badge .heart-icon {
   animation: heartBeat 2s infinite ease-in-out;
 }
 
@@ -88,7 +88,7 @@
   50% { transform: scale(1.15); }
 }
 
-.donate-hero-title {
+.contact-hero-title {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4.2rem);
   color: var(--white);
@@ -98,7 +98,7 @@
   text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
-.donate-hero-subtitle {
+.contact-hero-subtitle {
   font-family: var(--font-body);
   font-size: 1.15rem;
   color: rgba(255, 255, 255, 0.95);
@@ -109,60 +109,14 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* ─── Scroll Indicators ───────────────────────────────── */
-.scroll-indicator-wrap {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.65);
-  transition: all 0.3s var(--transition-apple);
-  z-index: 5;
-  padding: 0.5rem;
-}
-
-.scroll-indicator-wrap:hover {
-  color: var(--gold-light);
-  transform: translate(-50%, -4px);
-}
-
-.scroll-indicator-wrap.dark-text {
-  color: rgba(10, 22, 40, 0.5);
-}
-
-.scroll-indicator-wrap.dark-text:hover {
-  color: var(--gold);
-}
-
-.scroll-text {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.scroll-arrow-icon {
-  animation: bounce 2s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
 
 /* ─── Form / Details Block (Block 2) ─────────────────── */
-.donate-form-page {
+.contact-form-page {
   background-color: var(--off-white);
   padding-bottom: 9rem; /* spacing for indicator */
 }
 
-.donate-grid {
+.contact-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 5rem;
@@ -172,7 +126,7 @@
 }
 
 /* Left Column: Sponsor Text Panel */
-.donate-info-panel {
+.contact-info-panel {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -289,7 +243,7 @@
 }
 
 /* Right Column: Bank Details Card */
-.donate-bank-details-panel {
+.contact-bank-details-panel {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -359,7 +313,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 0 4px;
+  padding:  4px;
 }
 
 .chip-line {
@@ -472,9 +426,205 @@
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+.media-contact-section {
+  padding: 4rem 0 2rem;
+  background: #f8f7f4;
+}
+
+.media-contact-card {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  padding: 10rem 4rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 40px 80px rgba(5, 12, 28, 0.1);
+}
+
+.media-contact-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  z-index: 0;
+}
+
+.media-contact-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+}
+
+.media-contact-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  text-align: left;
+}
+
+.media-contact-left h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.media-contact-left p {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+}
+
+.contact-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 0;
+  align-items: flex-start;
+}
+
+.media-contact-images {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.contact-img-wrapper {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  border: 4px solid #fff;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+}
+
+.contact-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-img-wrapper.img-1 {
+  width: 280px;
+  height: 200px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transform: rotate(-4deg);
+}
+
+.contact-img-wrapper.img-2 {
+  width: 240px;
+  height: 240px;
+  top: 40px;
+  right: 0;
+  z-index: 1;
+  transform: rotate(6deg);
+}
+
+.contact-img-wrapper.img-3 {
+  width: 280px;
+  height: 180px;
+  bottom: 0;
+  left: 60px;
+  z-index: 3;
+  transform: rotate(2deg);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: left;
+}
+
+.contact-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-premium {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+/* ─── Scroll Indicators ───────────────────────────────── */
+.scroll-indicator-wrap {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.3s var(--transition-apple);
+  z-index: 5;
+  padding: 0.5rem;
+}
+
+.scroll-indicator-wrap:hover {
+  color: var(--gold-light);
+  transform: translate(-50%, -4px);
+}
+
+.scroll-indicator-wrap.dark-text {
+  color: rgba(10, 22, 40, 0.5);
+}
+
+.scroll-indicator-wrap.dark-text:hover {
+  color: var(--gold);
+}
+
+.scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.scroll-arrow-icon {
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
 
 /* ─── FAQ Block (Block 3) ────────────────────────────── */
-.donate-faq-page {
+.contact-faq-page {
   background-color: var(--off-white);
   padding-bottom: 8rem;
 }
@@ -575,17 +725,17 @@
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-  .donate-page-block {
+  .contact-page-block {
     padding: 6rem 1.5rem;
     min-height: auto; /* Fallback on tablets/phones to avoid cramming */
   }
   
-  .donate-grid {
+  .contact-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
   }
   
-  .donate-bank-details-panel {
+  .contact-bank-details-panel {
     justify-content: center;
   }
   
@@ -595,11 +745,11 @@
 }
 
 @media (max-width: 768px) {
-  .donate-hero {
+  .contact-hero {
     padding: 8rem 1.5rem 4rem;
   }
   
-  .donate-info-panel {
+  .contact-info-panel {
     padding: 0;
   }
   
