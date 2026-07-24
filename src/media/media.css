@@ -1322,7 +1322,7 @@
   padding: 4rem 3.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background: #ffffff;
   position: relative;
 }
@@ -1340,7 +1340,7 @@
   gap: 0.5rem;
   padding: 0.4rem 1rem;
   background: rgba(201, 168, 76, 0.1);
-  color: #a87b00;
+  color: #a87b00 !important;
   border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -1350,7 +1350,7 @@
 
 .modal-meta-date {
   font-size: 0.85rem;
-  color: rgba(0,0,0,0.4);
+  color: rgba(0,0,0,0.4) !important;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1360,7 +1360,7 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   line-height: 1.1;
-  color: var(--navy);
+  color: #0a1628 !important;
   margin-bottom: 2rem;
   font-weight: 600;
 }
@@ -1369,7 +1369,7 @@
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6) !important;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
