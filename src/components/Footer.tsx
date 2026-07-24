@@ -116,75 +116,65 @@ export default function Footer() {
               WebkitBackdropFilter: 'blur(10px)',
               border: '1px solid rgba(255,255,255,0.08)',
               borderTop: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: '16px',
-              padding: '2rem 1.5rem',
+              borderRadius: '18px',
+              padding: '0.75rem',
               textAlign: 'center',
-              minWidth: '180px',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+              minWidth: '200px',
+              minHeight: '220px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              marginRight: '2rem',
             }}
           >
-            <div style={{ marginBottom: '1.25rem', display: 'flex', justifyContent: 'center' }}>
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                <path d="M2 12h20" />
-              </svg>
-            </div>
-            <div style={{ fontSize: '0.65rem', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.4rem' }}>
-              United Alumni
-            </div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: 'white' }}>
-              Kolkata Network
+            <div style={{ marginBottom: '0rem', display: 'flex', justifyContent: 'center' }}>
+              
+              <div
+             style={{
+              width: '160px',
+              height: '160px',
+              overflow: 'hidden',
+              borderRadius: '14px',
+              display: 'flex',
+              alignItems: 'center',
+             justifyContent: 'center',
+           }}
+            >
+            <img
+                src="/image1.png"
+              alt="United Alumni"
+              style={{
+              width: '160px',
+              height: '160px',
+              objectFit: 'cover',
+              transform: 'scale(1.3)',
+            }}
+            />
+            
+          </div>
+          
             </div>
           </motion.div>
+          <p
+    style={{
+      marginTop: '-1rem',
+      marginBottom: 0,
+      fontSize: '1rem',
+      fontWeight: 700,
+      letterSpacing: '0.15em',
+      textTransform: 'uppercase',
+      color: 'var(--gold)',
+      textAlign: 'right',
+      marginRight: '-15rem',
+      fontFamily: 'var(--font-display)',
+    }}
+  >
+    Follow us on Instagram
+  </p>
+         <div><div>
+  
+        </div></div>
         </div>
-
-        {/* Links Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-          gap: '2rem',
-          marginBottom: '4rem',
-        }}>
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 style={{
-                fontSize: '0.68rem',
-                fontWeight: 700,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'var(--gold)',
-                marginBottom: '1.2rem',
-              }}>
-                {category}
-              </h4>
-              <ul style={{ listStyle: 'none' }}>
-                {links.map(link => (
-                  <li key={link} style={{ marginBottom: '0.7rem' }}>
-                    <a
-                      href="#"
-                      id={`footer-${link.toLowerCase().replace(/\s+/g, '-')}`}
-                      style={{
-                        fontSize: '0.85rem',
-                        color: 'rgba(255,255,255,0.5)',
-                        transition: 'color 0.2s ease',
-                        textDecoration: 'none',
-                      }}
-                      onMouseEnter={e => {
-                        (e.currentTarget as HTMLElement).style.color = 'white';
-                      }}
-                      onMouseLeave={e => {
-                        (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)';
-                      }}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+          
+        
 
         {/* Bottom bar */}
         <div style={{
@@ -194,7 +184,6 @@ export default function Footer() {
           flexWrap: 'wrap',
           gap: '1rem',
           paddingTop: '2rem',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
         }}>
           <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)' }}>
             © 2026 Aeternum Academy. All rights reserved.

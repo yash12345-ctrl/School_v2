@@ -261,20 +261,7 @@ export default function HeroSection() {
           </p>
 
           {/* CTA buttons */}
-          <div
-            className="hero-ctas"
-            style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap', opacity: 0, justifyContent: 'center' }}
-          >
-            <a href="#legacy" className="apple-btn-primary">
-              Explore Our Legacy
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <a href="#alumni" className="apple-btn-ghost">
-              Meet Our Members
-            </a>
-          </div>
+         
 
           {/* ── Stats bar ── */}
           <div
