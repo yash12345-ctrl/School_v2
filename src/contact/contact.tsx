@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Copy, CheckCircle2, ChevronDown, ChevronDown as ScrollArrow, Globe, BookOpen, Phone, Mail, MapPin } from 'lucide-react';
+import { Heart, ChevronDown, ChevronDown as ScrollArrow, Globe, BookOpen, Phone, Mail, MapPin } from 'lucide-react';
 import './contact.css';
 
 const FAQS = [
@@ -12,21 +12,6 @@ const FAQS = [
 
 export default function ContactPage() {
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
-  const [copiedField, setCopiedField] = useState<string | null>(null);
-
-  const contactDetails = {
-    phone: '+91-98310 19298',
-    email: 'imrzak@gmail.com',
-    address: '93, Phears Lane, Bowbazar, Kolkata 700 012',
-  };
-
-  const handleCopy = (text: string, fieldName: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedField(fieldName);
-    setTimeout(() => {
-      setCopiedField(null);
-    }, 2000);
-  };
 
   const toggleFaq = (index: number) => {
     setFaqOpenIndex(faqOpenIndex === index ? null : index);
@@ -77,96 +62,84 @@ export default function ContactPage() {
           <div className="contact-grid">
 
             {/* Left Column: About FACES Organization Information */}
-            
-              <div>
-                <h2 className="panel-title">FACES</h2>
-                <div className="gold-divider" />
-                <p className="panel-subtitle">Non-profit alumni association, est. 2006 — Kolkata</p>
 
-                <div className="faces-bento-grid">
-                  <div className="bento-box bento-large">
-                    <span className="bento-number">18+</span>
-                    <span className="bento-label">Years of Service</span>
-                    <p className="bento-desc">Dedicated to community welfare and social upliftment since 2006.</p>
-                  </div>
+            <div>
+              <h2 className="panel-title">FACES</h2>
+              <div className="gold-divider" />
+              <p className="panel-subtitle">Non-profit alumni association, est. 2006 — Kolkata</p>
 
-                  <div className="bento-box">
-                    <span className="bento-icon"><Globe size={28} /></span>
-                    <span className="bento-label">Global Alumni</span>
-                  </div>
-
-                  <div className="bento-box">
-                    <span className="bento-icon"><BookOpen size={28} /></span>
-                    <span className="bento-label">Education</span>
-                  </div>
-
+              <div className="faces-bento-grid">
+                <div className="bento-box bento-large">
+                  <span className="bento-number">18+</span>
+                  <span className="bento-label">Years of Service</span>
+                  <p className="bento-desc">Dedicated to community welfare and social upliftment since 2006.</p>
                 </div>
-              </div>    
-            </div>
-        
-        </div>
 
-        
-      {/* ── Press Contact Section ── */}
-        <section className="media-contact-section">
-          
+                <div className="bento-box">
+                  <span className="bento-icon"><Globe size={28} /></span>
+                  <span className="bento-label">Global Alumni</span>
+                </div>
+
+                <div className="bento-box">
+                  <span className="bento-icon"><BookOpen size={28} /></span>
+                  <span className="bento-label">Education</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Connect With Us */}
             <motion.div
-              className="media-contact-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="media-contact-card small-contact-card"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
               <div className="media-contact-bg"></div>
-              <div className="media-contact-grid">
+              <div className="media-contact-left">
+                <h2>Connect With Us!</h2>
+                <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
 
-                {/* Left Side Content */}
-                <div className="media-contact-left">
-                  <h2>Connect With Us!</h2>
-                  <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
-
-                  <div className="contact-details-grid">
-                    <div className="contact-item">
-                      <div className="contact-icon-wrapper">
-                        <Phone size={20} />
-                      </div>
-                      <span>+91-98310 19298</span>
+                <div className="contact-details-grid">
+                  <div className="contact-item">
+                    <div className="contact-icon-wrapper">
+                      <Phone size={20} />
                     </div>
-                    <div className="contact-item">
-                      <div className="contact-icon-wrapper">
-                        <Mail size={20} />
-                      </div>
-                      <span>imrzak@gmail.com</span>
+                    <span>+91-98310 19298</span>
+                  </div>
+                  <div className="contact-item">
+                    <div className="contact-icon-wrapper">
+                      <Mail size={20} />
                     </div>
-                    <div className="contact-item">
-                      <div className="contact-icon-wrapper">
-                        <MapPin size={20} />
-                      </div>
-                      <span>93, Phears Lane, Bowbazar, Kolkata 700 012</span>
+                    <span>imrzak@gmail.com</span>
+                  </div>
+                  <div className="contact-item">
+                    <div className="contact-icon-wrapper">
+                      <MapPin size={20} />
                     </div>
+                    <span>93, Phears Lane, Bowbazar, Kolkata 700 012</span>
                   </div>
                 </div>
+              </div>
 
-                {/* Right Side Images */}
-                <div className="media-contact-images">
-                  <div className="contact-img-wrapper img-1">
-                    <img src="/s1.webp" alt="Community Event" />
-                  </div>
-                  <div className="contact-img-wrapper img-2">
-                    <img src="/s2.webp" alt="Charity Drive" />
-                  </div>
-                  <div className="contact-img-wrapper img-3">
-                    <img src="/s3.webp" alt="Donation Camp" />
-                  </div>
+              <div className="small-contact-images">
+                <div className="contact-img-wrapper small-img-1 reload-trigger">
+                  <img src="/s1.webp" alt="Community Event" />
                 </div>
-
+                <div className="contact-img-wrapper small-img-2">
+                  <img src="/s2.webp" alt="Charity Drive" />
+                </div>
+                <div className="contact-img-wrapper small-img-3">
+                  <img src="/s3.webp" alt="Donation Camp" />
+                </div>
               </div>
             </motion.div>
-          
-        </section>
+
+          </div>
+        </div>
 
 
-          {/* Scroll Indicator */}
+        {/* Scroll Indicator */}
         <div className="scroll-indicator-wrap dark-text" onClick={() => scrollToNext('.contact-faq-page')}>
           <span className="scroll-text">FAQs</span>
           <ScrollArrow className="scroll-arrow-icon" size={16} />
