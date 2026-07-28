@@ -12,6 +12,7 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const isContactPage = window.location.pathname === "/contact";
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -26,11 +27,8 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`navbar ${scrolled ? 'scrolled' : ''}`}
-        style={{
-          /* Apple-style: ultra-thin frosted pill bar when scrolled */
-          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        }}
+    className={`navbar ${scrolled ? 'scrolled' : ''}`}
+    data-page={isContactPage ? "contact" : "default"}
       >
         {/* ── Premium Logo ── */}
         <a
