@@ -117,9 +117,11 @@ export default function App() {
         >
           {/* Shimmer sweep */}
           <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
-
+          
           {/* Text */}
+          
           <span style={{
+            paddingLeft:'20px',
             fontFamily: "'Inter', sans-serif",
             fontSize: '0.65rem',
             fontWeight: 600,
@@ -128,7 +130,7 @@ export default function App() {
             color: 'rgba(255, 255, 255, 0.65)',
             transition: 'color 0.4s ease',
           }} className="group-hover:text-white relative z-10">
-            Skip Intro
+          Skip Intro
           </span>
 
           {/* Icon Circle */}
