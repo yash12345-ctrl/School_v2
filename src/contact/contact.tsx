@@ -65,8 +65,10 @@ export default function ContactPage() {
 
             <div>
               <h2 className="panel-title">FACES</h2>
-              <div className="gold-divider" />
+              
               <p className="panel-subtitle">Non-profit alumni association, est. 2006 — Kolkata</p>
+              <div className="gold-divider" />
+              <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
 
               <div className="faces-bento-grid">
                 <div className="bento-box bento-large">
@@ -98,7 +100,7 @@ export default function ContactPage() {
               <div className="media-contact-bg"></div>
               <div className="media-contact-left">
                 <h2>Connect With Us!</h2>
-                <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
+               
 
                 <div className="contact-details-grid">
                   <div className="contact-item">
