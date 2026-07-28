@@ -1,12 +1,4 @@
 import { motion } from 'framer-motion';
-
-const footerLinks = {
-  'Academics': ['Curriculum', 'Faculty', 'Research', 'Innovation Lab', 'Library'],
-  'Campus Life': ['Sports', 'Arts & Culture', 'Events', 'Student Council', 'Clubs'],
-  'Admissions': ['Apply Now', 'Scholarships', 'Requirements', 'Virtual Tour', 'Contact'],
-  'Community': ['Alumni Network', 'Parents', 'Partnerships', 'Giving Back', 'News'],
-};
-
 export default function Footer() {
   return (
     <footer style={{

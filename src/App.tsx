@@ -80,7 +80,7 @@ export default function App() {
 
   if (!introFinished) {
     return (
-      <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
+      <div className="fixed inset-0 z-9999 bg-black flex items-center justify-center">
         <video
           src="/Boy_opening_letter_on_bicycle_202606251319.mp4"
           autoPlay
@@ -116,7 +116,7 @@ export default function App() {
           }}
         >
           {/* Shimmer sweep */}
-          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
+          <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
 
           {/* Text */}
           <span style={{
@@ -148,7 +148,7 @@ export default function App() {
                height: '14px',
                color: 'rgba(255, 255, 255, 0.8)',
                transition: 'all 0.4s ease',
-             }} className="group-hover:text-black group-hover:translate-x-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             }} className="group-hover:text-black group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
              </svg>
           </div>
