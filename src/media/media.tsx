@@ -33,6 +33,7 @@ const getIconForType = (type: string) => {
 export default function Media() {
 
   const [expandedItem, setExpandedItem] = useState<any | null>(null);
+  const [fullArticleItem, setFullArticleItem] = useState<any | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -172,10 +173,9 @@ export default function Media() {
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   onClick={() => setExpandedItem(item)}
-                  onMouseEnter={() => setExpandedItem(item)}
                 >
                   <div className="media-tile-img-wrap">
-                    <img src={item.image} alt={item.title} className="media-tile-img" loading="lazy" />
+                    <img src={item.image} alt={`${item.title || 'Media article'} preview`} className="media-tile-img" loading="lazy" />
                     <div className="media-tile-overlay"></div>
                     <div className="media-tile-type">
                       {getIconForType(item.type)}
@@ -188,10 +188,18 @@ export default function Media() {
                       <span className="media-tile-info">{(item as any).readTime || (item as any).duration || (item as any).count}</span>
                     </div>
                     <h3 className="media-tile-title">{item.title}</h3>
-                    <div className="media-tile-action">
+                    <button
+                      type="button"
+                      className="media-tile-action"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setExpandedItem(item);
+                      }}
+                      aria-label={`Read story ${item.title}`}
+                    >
                       <span>Read Story</span>
                       <ChevronRight size={16} />
-                    </div>
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -233,11 +241,94 @@ export default function Media() {
                     <p>{expandedItem.modalContent}</p>
                   </div>
                   <div className="modal-action-row">
-                    <button className="modal-btn primary">Read Full Article</button>
-                    <button className="modal-btn secondary">Share</button>
+                      <button
+                        type="button"
+                        className="modal-btn primary"
+                        onClick={() => {
+                          setFullArticleItem(expandedItem);
+                          setExpandedItem(null);
+                        }}
+                      >
+                        Read Full Article
+                      </button>
+                      <button className="modal-btn secondary">Share</button>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {fullArticleItem && (
+            <div className="media-full-article-overlay">
+              <motion.div
+                className="media-full-article-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => {
+                  setFullArticleItem(null);
+                  setExpandedItem(null);
+                }}
+              />
+              <motion.article
+                className="media-full-article-page"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <button
+                  type="button"
+                  className="modal-close-btn"
+                  onClick={() => {
+                    setFullArticleItem(null);
+                    setExpandedItem(null);
+                  }}
+                  aria-label="Close full article"
+                >
+                  <X size={24} />
+                </button>
+                <div className="full-article-header">
+                  <div>
+                    <p className="full-article-kicker">Press & Media</p>
+                    <h2>{fullArticleItem.modalHeading || fullArticleItem.title}</h2>
+                    <p className="full-article-meta">{fullArticleItem.date} · {fullArticleItem.category}</p>
+                  </div>
+                  <p className="full-article-blurb">{fullArticleItem.modalContent}</p>
+                </div>
+                <div className="full-article-grid">
+                  <div className="full-article-column full-article-image-column">
+                    <div className="newspaper-image-frame">
+                      <img src={fullArticleItem.image} alt={fullArticleItem.title} />
+                      <div className="newspaper-caption">{fullArticleItem.title}</div>
+                    </div>
+                  </div>
+                  <div className="full-article-column full-article-copy-column">
+                    <section className="article-section">
+                      <h3>Featured Story</h3>
+                      <p>
+                        {fullArticleItem.modalContent}
+                      </p>
+                    </section>
+                    <section className="article-section">
+                      <h3>In Depth</h3>
+                      <p>
+                        {fullArticleItem.modalContent}
+                      </p>
+                    </section>
+                    <section className="article-section article-columns">
+                      <div>
+                        <p>{fullArticleItem.modalContent}</p>
+                      </div>
+                      <div>
+                        <p>{fullArticleItem.modalContent}</p>
+                      </div>
+                    </section>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             </div>
           )}
         </AnimatePresence>
