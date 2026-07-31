@@ -40,10 +40,6 @@ export default function HeroSection() {
     tl.fromTo('.hero-sub-copy', { opacity: 0, y: 20 }, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     }, '-=0.5');
-    tl.fromTo('.hero-ctas', { opacity: 0, y: 18 }, {
-      opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
-    }, '-=0.45');
-
     tl.fromTo('.hero-stats', { opacity: 0, y: 16 }, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     }, '-=0.5');
