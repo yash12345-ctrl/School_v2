@@ -181,7 +181,7 @@ export default function HeroSection() {
               textTransform: 'uppercase', color: '#ffffff',
               textShadow: '0 2px 4px rgba(0,0,0,0.5)',
             }}>
-              Est. 2001 · Since Excellence Began
+              Estd. 2001 · Since Excellence Began
             </span>
           </div>
 

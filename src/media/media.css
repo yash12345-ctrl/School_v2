@@ -1490,6 +1490,26 @@
   z-index: 10001;
 }
 
+/* Custom Scrollbar for Full Article Page */
+.media-full-article-page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.media-full-article-page::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.media-full-article-page::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.4);
+  border-radius: 10px;
+}
+
+.media-full-article-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.7);
+}
+
 .full-article-header {
   display: grid;
   gap: 1.5rem;

@@ -5,7 +5,7 @@ import './contact.css';
 
 const FAQS = [
   { q: 'Are donations tax-exempt?', a: 'Yes! All donations made to FACES Alumni Association are eligible for tax deduction under Section 80G of the Income Tax Act. A receipt with the 80G registration details will be automatically emailed to you.' },
-  { q: 'Can I set up a recurring monthly donation?', a: 'Currently, our online portal supports one-time contributions. If you would like to set up a monthly recurring standing instruction, please contact our PR team at pr@facesalumni.org.' },
+  { q: 'Can I set up a recurring monthly donation?', a: 'Currently, our online portal supports one-time contributions. If you would like to set up a monthly recurring standing instruction, please contact our PR team at imrzak@gmail.com' },
   { q: 'How are the funds utilized and audited?', a: 'Transparency is our core value. 100% of designated funds go directly to the respective projects (e.g. Scholarship Fund). We publish an audited annual financial report available to all registered members.' },
   { q: 'Do you accept international donations?', a: 'Yes. You can switch the currency selector to USD to contribute via international credit/debit cards or wire transfers.' }
 ];
@@ -65,10 +65,10 @@ export default function ContactPage() {
 
             <div>
               <h2 className="panel-title">FACES</h2>
-              
-              <p className="panel-subtitle">Non-profit alumni association, est. 2006 — Kolkata</p>
+
+              <p className="panel-subtitle">Non-profit alumni association, estd. 2006 — Kolkata</p>
               <div className="gold-divider" />
-              <p>Donations are welcome and are exempted u/s 8-G and 12A of the Indian Income Tax Act, 1961.</p>
+              <p>Donations are welcome and are exempted u/s 80-G and 12A of the Indian Income Tax Act, 1961.</p>
 
               <div className="faces-bento-grid">
                 <div className="bento-box bento-large">
@@ -100,7 +100,7 @@ export default function ContactPage() {
               <div className="media-contact-bg"></div>
               <div className="media-contact-left">
                 <h2>Connect With Us!</h2>
-               
+
 
                 <div className="contact-details-grid">
                   <div className="contact-item">

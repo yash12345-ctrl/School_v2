@@ -205,7 +205,7 @@ export default function PresidentSection() {
                 textTransform: 'uppercase',
                 color: 'rgba(201,168,76,0.85)',
               }}>
-                President · FACES Alumni Association
+                President · FACES
               </span>
               <span style={{
                 fontFamily: "'Inter', sans-serif",
@@ -213,7 +213,7 @@ export default function PresidentSection() {
                 color: 'rgba(255,255,255,0.35)',
                 marginTop: '2px',
               }}>
-                Est. 2006 · Kolkata
+                Estd. 2006 · Kolkata
               </span>
             </div>
           </motion.div>
