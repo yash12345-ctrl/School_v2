@@ -15,6 +15,13 @@ export default function Navbar() {
   const isContactPage = window.location.pathname === "/contact";
   const lastScrollY = useRef(0);
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('#') || path.startsWith('http')) return;
+    e.preventDefault();
+    window.history.pushState({}, '', path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -36,6 +43,7 @@ export default function Navbar() {
           className="nav-logo"
           id="nav-logo"
           style={{ display: 'flex', alignItems: 'center', gap: '0', textDecoration: 'none' }}
+          onClick={(e) => handleNavigation(e, '/')}
         >
           {/* Outer frosted pill that wraps everything */}
           <div style={{
@@ -217,6 +225,7 @@ export default function Navbar() {
                   (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.76)';
                   (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
                 }}
+                onClick={(e) => handleNavigation(e, item.href)}
               >
                 {item.label}
               </a>
@@ -268,7 +277,10 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05, ease: [0.22, 1, 0.36, 1], duration: 0.3 }}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  handleNavigation(e as any, item.href);
+                  setMenuOpen(false);
+                }}
                 style={{
                   display: 'flex',
                   alignItems: 'center',

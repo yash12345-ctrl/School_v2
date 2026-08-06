@@ -30,6 +30,26 @@ export default function App() {
     return () => window.removeEventListener('popstate', onLocationChange);
   }, []);
 
+  // Lenis smooth scrolling
+  useEffect(() => {
+    if (!introFinished) return;
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [introFinished]);
+
   if (currentPath === '/event') {
     return <EventPage />;
   }
@@ -57,27 +77,6 @@ export default function App() {
       </>
     );
   }
-
-  // Lenis smooth scrolling
-  useEffect(() => {
-    if (!introFinished) return;
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, [introFinished]);
-
   if (!introFinished) {
     return (
       <div className="fixed inset-0 z-9999 bg-black flex items-center justify-center">
