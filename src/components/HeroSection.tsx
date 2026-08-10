@@ -277,7 +277,7 @@ export default function HeroSection() {
             ].map((stat, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
                 {i > 0 && (
-                  <div style={{
+                  <div className="hero-stat-divider" style={{
                     width: '1px',
                     height: '32px',
                     background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent)',
@@ -313,6 +313,19 @@ export default function HeroSection() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Mobile Quick Actions (Visible on phone screens) */}
+          <div className="mobile-hero-actions">
+            <a href="/event" className="mobile-action-chip">
+              <span>✦ Explore Events</span>
+            </a>
+            <a href="/about" className="mobile-action-chip">
+              <span>✦ Our Story</span>
+            </a>
+            <a href="/contact" className="mobile-action-chip">
+              <span>✦ Contact</span>
+            </a>
           </div>
         </div>
 
@@ -399,23 +412,76 @@ export default function HeroSection() {
         }
         .apple-btn-ghost:active { transform: scale(0.975); }
 
+        .mobile-hero-actions {
+          display: none;
+        }
+
         /* Responsive: stack on mobile */
         @media (max-width: 768px) {
+          .mobile-hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 1.6rem;
+            flex-wrap: wrap;
+          }
+          .mobile-action-chip {
+            padding: 0.45rem 1rem;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 9999px;
+            color: #e8c96e;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+          }
+          .mobile-action-chip:active {
+            transform: scale(0.95);
+            background: rgba(201, 168, 76, 0.3);
+          }
           .hero-outer {
             flex-direction: column !important;
             align-items: center !important;
             text-align: center !important;
-            gap: 2.5rem !important;
+            gap: 1.5rem !important;
+            padding: 20px 1rem 0 !important;
           }
           .hero-outer > div:first-child {
             align-items: center !important;
           }
           .hero-outer > div:first-child p { margin-inline: auto; }
-          .hero-img-card {
-            width: clamp(220px, 70vw, 320px) !important;
+          .hero-line-1 h1 {
+            font-size: clamp(2.2rem, 10vw, 4.5rem) !important;
+            letter-spacing: 0.18em !important;
+            margin-right: -0.18em !important;
+          }
+          .hero-stats {
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 1.2rem !important;
+          }
+          .hero-stat-divider {
+            margin: 0 0.75rem !important;
           }
         }
         @media (max-width: 500px) {
+          .hero-eyebrow {
+            padding: 0.3rem 0.75rem !important;
+          }
+          .hero-line-1 h1 {
+            font-size: clamp(2rem, 9.5vw, 3.2rem) !important;
+            letter-spacing: 0.12em !important;
+            margin-right: -0.12em !important;
+          }
+          .hero-stat-divider {
+            display: none !important;
+          }
           .apple-btn-primary, .apple-btn-ghost {
             padding: 0.75rem 1.5rem; font-size: 0.85rem;
           }

@@ -521,7 +521,7 @@
 
     grid-template-columns:
         minmax(0,1fr)
-        minmax(340px,480px);
+        minmax(280px,480px);
 
     gap:5rem;
 

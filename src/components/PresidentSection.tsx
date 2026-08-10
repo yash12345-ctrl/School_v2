@@ -50,7 +50,7 @@ export default function PresidentSection() {
         className="container-xl"
         style={{ position: 'relative', zIndex: 2 }}
       >
-        <div style={{
+        <div className="president-flex" style={{
           display: 'flex',
           alignItems: 'center',
           gap: 'clamp(2.5rem, 6vw, 6rem)',
@@ -62,6 +62,7 @@ export default function PresidentSection() {
             initial={{ opacity: 0, x: -60, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="president-portrait-wrapper"
             style={{ flex: '0 0 auto', position: 'relative' }}
           >
             {/* Static gold offset border */}
@@ -146,14 +147,14 @@ export default function PresidentSection() {
             </div>
 
             {/* Gold divider */}
-            <div style={{
+            <div className="president-divider" style={{
               width: '50px', height: '2px',
               background: 'linear-gradient(90deg, rgba(201,168,76,0.9), transparent)',
               marginBottom: '2rem',
             }} />
 
             {/* Giant quote mark */}
-            <div style={{
+            <div className="president-quote-mark" style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: '6rem',
               lineHeight: 0.7,
@@ -220,6 +221,28 @@ export default function PresidentSection() {
         </div>
       </div>
 
+      <style>{`
+        @media (max-width: 768px) {
+          #president {
+            padding: 3.5rem 0 !important;
+          }
+          .president-flex {
+            justify-content: center !important;
+            text-align: center !important;
+            gap: 2rem !important;
+          }
+          .president-portrait-wrapper {
+            margin: 0 auto 1.5rem !important;
+          }
+          .president-quote-mark {
+            font-size: 3.5rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          .president-divider {
+            margin-inline: auto !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

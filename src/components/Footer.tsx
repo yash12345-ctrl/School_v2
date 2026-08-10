@@ -100,73 +100,63 @@ export default function Footer() {
           </div>
 
           {/* United Alumni badge */}
-          <motion.div
-            whileHover={{ y: -5 }}
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderTop: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: '18px',
-              padding: '0.75rem',
-              textAlign: 'center',
-              minWidth: '200px',
-              minHeight: '220px',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-              marginRight: '2rem',
-            }}
-          >
-            <div style={{ marginBottom: '0rem', display: 'flex', justifyContent: 'center' }}>
-              
-              <div
-             style={{
-              width: '160px',
-              height: '160px',
-              overflow: 'hidden',
-              borderRadius: '14px',
-              display: 'flex',
-              alignItems: 'center',
-             justifyContent: 'center',
-           }}
-            >
-            <img
-                src="/image1.png"
-              alt="United Alumni"
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+            <motion.div
+              whileHover={{ y: -5 }}
               style={{
-              width: '160px',
-              height: '160px',
-              objectFit: 'cover',
-              transform: 'scale(1.3)',
-            }}
-            />
-            
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderTop: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '18px',
+                padding: '0.75rem',
+                textAlign: 'center',
+                minWidth: '180px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div
+                  style={{
+                    width: '150px',
+                    height: '150px',
+                    overflow: 'hidden',
+                    borderRadius: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <img
+                    src="/image1.png"
+                    alt="United Alumni"
+                    style={{
+                      width: '150px',
+                      height: '150px',
+                      objectFit: 'cover',
+                      transform: 'scale(1.2)',
+                    }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                textAlign: 'center',
+                fontFamily: 'var(--font-display)',
+              }}
+            >
+              Follow us on Instagram
+            </p>
           </div>
-          
-            </div>
-          </motion.div>
-          <p
-    style={{
-      marginTop: '-1rem',
-      marginBottom: 0,
-      fontSize: '1rem',
-      fontWeight: 700,
-      letterSpacing: '0.15em',
-      textTransform: 'uppercase',
-      color: 'var(--gold)',
-      textAlign: 'right',
-      marginRight: '-15rem',
-      fontFamily: 'var(--font-display)',
-    }}
-  >
-    Follow us on Instagram
-  </p>
-         <div><div>
-  
-        </div></div>
         </div>
-          
-        
 
         {/* Bottom bar */}
         <div style={{
@@ -180,7 +170,7 @@ export default function Footer() {
           <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)' }}>
             © 2026 Aeternum Academy. All rights reserved.
           </p>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             {['Privacy Policy', 'Terms of Use', 'Accessibility'].map(item => (
               <a
                 key={item}
@@ -204,8 +194,22 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 640px) {
+          footer {
+            padding: 3.5rem 1rem 2rem !important;
+          }
           .footer-top {
             grid-template-columns: 1fr !important;
+            justify-items: center !important;
+            text-align: center !important;
+            gap: 2.5rem !important;
+            margin-bottom: 2rem !important;
+            padding-bottom: 2rem !important;
+          }
+          .footer-top > div:first-child > div:first-child {
+            justify-content: center !important;
+          }
+          .footer-top > div:first-child > div:last-child {
+            justify-content: center !important;
           }
         }
       `}</style>

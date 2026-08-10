@@ -1655,9 +1655,9 @@
 /* ─── Media Tiles Grid Layout ─── */
 .media-tiles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
   width: 100%;
 }
 

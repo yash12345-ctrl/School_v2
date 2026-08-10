@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background:#0a1628">
 
 <head>
   <meta charset="UTF-8" />
@@ -15,9 +15,106 @@
     content="For generations, our students have transformed ambition into achievement and learning into lifelong success." />
   <meta property="og:type" content="website" />
 
+  <style>
+    #html-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: #0a0a0e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease;
+    }
+    #html-splash.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #html-splash video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #html-splash .skip-btn {
+      position: absolute;
+      bottom: 3rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: #e8c96e;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #html-splash .skip-btn.visible {
+      opacity: 1;
+    }
+  </style>
 </head>
 
-<body>
+<body style="background:#0a1628">
+  <!--
+    Both videos are in the HTML so the browser parser starts loading
+    the correct one IMMEDIATELY — no waiting for JS.
+    The wrong one gets removed by the script below.
+  -->
+  <div id="html-splash" onclick="skipSplash()">
+    <video id="splash-mobile" src="/splash.mp4" muted playsinline autoplay preload="auto"></video>
+    <video id="splash-desktop" src="/Boy_opening_letter_on_bicycle_202606251319.mp4" muted playsinline autoplay preload="auto"></video>
+    <button class="skip-btn" id="splash-skip-btn" onclick="event.stopPropagation();skipSplash()">Skip ›</button>
+  </div>
+
+  <script>
+    var isMobile = window.innerWidth <= 768;
+    var splash = document.getElementById('html-splash');
+    var skipBtn = document.getElementById('splash-skip-btn');
+
+    // Remove the video we don't need — keep the right one
+    var removeId = isMobile ? 'splash-desktop' : 'splash-mobile';
+    var keepId = isMobile ? 'splash-mobile' : 'splash-desktop';
+    var toRemove = document.getElementById(removeId);
+    if (toRemove) { toRemove.pause(); toRemove.removeAttribute('src'); toRemove.remove(); }
+
+    var vid = document.getElementById(keepId);
+
+    // Show skip button once video plays
+    vid.addEventListener('playing', function() {
+      if (skipBtn) skipBtn.classList.add('visible');
+    });
+
+    vid.addEventListener('ended', function() { skipSplash(); });
+
+    // If autoplay didn't fire, try manually
+    if (vid.paused) {
+      vid.play().catch(function() { skipSplash(); });
+    }
+
+    var splashDone = false;
+    function skipSplash() {
+      if (splashDone) return;
+      splashDone = true;
+      vid.pause();
+      splash.classList.add('hide');
+      setTimeout(function() { splash.remove(); }, 900);
+    }
+    window.skipSplash = skipSplash;
+
+    // Fallback: skip after 10s if video never loads
+    setTimeout(function() {
+      if (!splashDone) skipSplash();
+    }, 10000);
+  </script>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

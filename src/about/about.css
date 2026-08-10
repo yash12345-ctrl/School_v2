@@ -265,10 +265,38 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 8rem 1.5rem 5rem;
+    padding: 7rem 1rem 4rem;
+    min-height: auto;
   }
   .about-quote-block {
-    padding: 6rem 1.5rem;
+    padding: 4rem 1rem;
+  }
+  .about-block {
+    padding: 3.5rem 1rem;
+    min-height: auto;
+  }
+  .about-block-container {
+    gap: 2.5rem;
+  }
+  .about-image-decorator {
+    display: none;
+  }
+  .about-block-media {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-title {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+  }
+  .about-hero-tagline {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+  .media-item {
+    width: clamp(120px, 38vw, 150px);
+    height: clamp(120px, 38vw, 150px);
   }
 }
 

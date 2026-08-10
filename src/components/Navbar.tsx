@@ -31,6 +31,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <nav
@@ -149,7 +160,7 @@ export default function Navbar() {
 
               {/* Bottom row: full org name only */}
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{
+                <span className="nav-logo-subtitle" style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
                   fontSize: '0.42rem',
@@ -270,7 +281,7 @@ export default function Navbar() {
               boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
             }}
           >
-            {[...navItems, { label: 'Apply Now', href: '#apply' }].map((item, i) => (
+            {navItems.map((item, i) => (
               <motion.a
                 key={item.label}
                 href={item.href}
@@ -288,8 +299,8 @@ export default function Navbar() {
                   padding: '0.9rem 1rem',
                   fontSize: '1.05rem',
                   fontFamily: "'Inter', -apple-system, sans-serif",
-                  fontWeight: item.label === 'Apply Now' ? 600 : 400,
-                  color: item.label === 'Apply Now' ? 'var(--gold-light)' : 'rgba(255,255,255,0.88)',
+                  fontWeight: 400,
+                  color: 'rgba(255,255,255,0.88)',
                   borderRadius: '12px',
                   transition: 'background 0.2s ease',
                   letterSpacing: '-0.01em',
