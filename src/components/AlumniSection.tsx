@@ -93,10 +93,9 @@ export default function AlumniSection() {
             schools and colleges of Kolkata, driving social and cultural impact.
           </p>
         </motion.div>
-        {/* Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '1.5rem',
         }}>
           {alumni.map((person, i) => (

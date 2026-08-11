@@ -49,10 +49,11 @@ export default function MobileBottomBar() {
           .mobile-bottom-bar-wrapper {
             display: block;
             position: fixed;
-            bottom: 12px;
+            bottom: 24px;
+            bottom: max(24px, env(safe-area-inset-bottom));
             left: 12px;
             right: 12px;
-            z-index: 999;
+            z-index: 9999;
           }
 
           .mobile-bottom-bar {
